@@ -1,0 +1,30 @@
+C:\Dot.NET\MMS.DataService\bin\Debug\net7.0\MMS.DataService.deps.json
+C:\Dot.NET\MMS.DataService\bin\Debug\net7.0\MMS.DataService.dll
+C:\Dot.NET\MMS.DataService\bin\Debug\net7.0\MMS.DataService.pdb
+C:\Dot.NET\MMS.DataService\bin\Debug\net7.0\MMS.Entities.dll
+C:\Dot.NET\MMS.DataService\bin\Debug\net7.0\MMS.Entities.pdb
+C:\Dot.NET\MMS.DataService\obj\Debug\net7.0\MMS.DataService.csproj.AssemblyReference.cache
+C:\Dot.NET\MMS.DataService\obj\Debug\net7.0\MMS.DataService.GeneratedMSBuildEditorConfig.editorconfig
+C:\Dot.NET\MMS.DataService\obj\Debug\net7.0\MMS.DataService.AssemblyInfoInputs.cache
+C:\Dot.NET\MMS.DataService\obj\Debug\net7.0\MMS.DataService.AssemblyInfo.cs
+C:\Dot.NET\MMS.DataService\obj\Debug\net7.0\MMS.DataService.csproj.CoreCompileInputs.cache
+C:\Dot.NET\MMS.DataService\obj\Debug\net7.0\MMS.DataService.csproj.CopyComplete
+C:\Dot.NET\MMS.DataService\obj\Debug\net7.0\MMS.DataService.dll
+C:\Dot.NET\MMS.DataService\obj\Debug\net7.0\refint\MMS.DataService.dll
+C:\Dot.NET\MMS.DataService\obj\Debug\net7.0\MMS.DataService.pdb
+C:\Dot.NET\MMS.DataService\obj\Debug\net7.0\ref\MMS.DataService.dll
+C:\Dot.NET\Mess management System\MMS.DataService\bin\Debug\net7.0\MMS.DataService.deps.json
+C:\Dot.NET\Mess management System\MMS.DataService\bin\Debug\net7.0\MMS.DataService.dll
+C:\Dot.NET\Mess management System\MMS.DataService\bin\Debug\net7.0\MMS.DataService.pdb
+C:\Dot.NET\Mess management System\MMS.DataService\bin\Debug\net7.0\MMS.Entities.dll
+C:\Dot.NET\Mess management System\MMS.DataService\bin\Debug\net7.0\MMS.Entities.pdb
+C:\Dot.NET\Mess management System\MMS.DataService\obj\Debug\net7.0\MMS.DataService.csproj.AssemblyReference.cache
+C:\Dot.NET\Mess management System\MMS.DataService\obj\Debug\net7.0\MMS.DataService.GeneratedMSBuildEditorConfig.editorconfig
+C:\Dot.NET\Mess management System\MMS.DataService\obj\Debug\net7.0\MMS.DataService.AssemblyInfoInputs.cache
+C:\Dot.NET\Mess management System\MMS.DataService\obj\Debug\net7.0\MMS.DataService.AssemblyInfo.cs
+C:\Dot.NET\Mess management System\MMS.DataService\obj\Debug\net7.0\MMS.DataService.csproj.CoreCompileInputs.cache
+C:\Dot.NET\Mess management System\MMS.DataService\obj\Debug\net7.0\MMS.DataService.csproj.CopyComplete
+C:\Dot.NET\Mess management System\MMS.DataService\obj\Debug\net7.0\MMS.DataService.dll
+C:\Dot.NET\Mess management System\MMS.DataService\obj\Debug\net7.0\refint\MMS.DataService.dll
+C:\Dot.NET\Mess management System\MMS.DataService\obj\Debug\net7.0\MMS.DataService.pdb
+C:\Dot.NET\Mess management System\MMS.DataService\obj\Debug\net7.0\ref\MMS.DataService.dll

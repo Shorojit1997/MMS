@@ -1,0 +1,24 @@
+C:\Dot.NET\MMS.Entity\bin\Debug\net7.0\MMS.Entities.deps.json
+C:\Dot.NET\MMS.Entity\bin\Debug\net7.0\MMS.Entities.dll
+C:\Dot.NET\MMS.Entity\bin\Debug\net7.0\MMS.Entities.pdb
+C:\Dot.NET\MMS.Entity\obj\Debug\net7.0\MMS.Entities.csproj.AssemblyReference.cache
+C:\Dot.NET\MMS.Entity\obj\Debug\net7.0\MMS.Entities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Dot.NET\MMS.Entity\obj\Debug\net7.0\MMS.Entities.AssemblyInfoInputs.cache
+C:\Dot.NET\MMS.Entity\obj\Debug\net7.0\MMS.Entities.AssemblyInfo.cs
+C:\Dot.NET\MMS.Entity\obj\Debug\net7.0\MMS.Entities.csproj.CoreCompileInputs.cache
+C:\Dot.NET\MMS.Entity\obj\Debug\net7.0\MMS.Entities.dll
+C:\Dot.NET\MMS.Entity\obj\Debug\net7.0\refint\MMS.Entities.dll
+C:\Dot.NET\MMS.Entity\obj\Debug\net7.0\MMS.Entities.pdb
+C:\Dot.NET\MMS.Entity\obj\Debug\net7.0\ref\MMS.Entities.dll
+C:\Dot.NET\Mess management System\MMS.Entity\bin\Debug\net7.0\MMS.Entities.deps.json
+C:\Dot.NET\Mess management System\MMS.Entity\bin\Debug\net7.0\MMS.Entities.dll
+C:\Dot.NET\Mess management System\MMS.Entity\bin\Debug\net7.0\MMS.Entities.pdb
+C:\Dot.NET\Mess management System\MMS.Entity\obj\Debug\net7.0\MMS.Entities.csproj.AssemblyReference.cache
+C:\Dot.NET\Mess management System\MMS.Entity\obj\Debug\net7.0\MMS.Entities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Dot.NET\Mess management System\MMS.Entity\obj\Debug\net7.0\MMS.Entities.AssemblyInfoInputs.cache
+C:\Dot.NET\Mess management System\MMS.Entity\obj\Debug\net7.0\MMS.Entities.AssemblyInfo.cs
+C:\Dot.NET\Mess management System\MMS.Entity\obj\Debug\net7.0\MMS.Entities.csproj.CoreCompileInputs.cache
+C:\Dot.NET\Mess management System\MMS.Entity\obj\Debug\net7.0\MMS.Entities.dll
+C:\Dot.NET\Mess management System\MMS.Entity\obj\Debug\net7.0\refint\MMS.Entities.dll
+C:\Dot.NET\Mess management System\MMS.Entity\obj\Debug\net7.0\MMS.Entities.pdb
+C:\Dot.NET\Mess management System\MMS.Entity\obj\Debug\net7.0\ref\MMS.Entities.dll
