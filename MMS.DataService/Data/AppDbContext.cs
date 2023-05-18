@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace MMS.DataService.Data
 {
@@ -15,7 +16,7 @@ namespace MMS.DataService.Data
         {
 
         }
-
+  
         public virtual DbSet<Person> Persons { get; set; }
     }
 }

@@ -1,0 +1,39 @@
+﻿@model MMS.Authentication.Models.DTO.Incomming.RegistrationRequestDTO
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Sign Up</h2>
+                    <form asp-controller="Auth" asp-action="Registration" method="post" class="border-1">
+                        <div asp-validation-summary="All"></div>
+                        <div class="mt-2 row">
+                            <label asp-for="Name"></label>
+                            <input placeholder="Enter name" type="text" asp-for="Name" class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <div class="mt-2 row">
+                            <label asp-for="Email"></label>
+                            <input placeholder="Enter your email" type="text" asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        <div class="mt-2 row">
+                            <label asp-for="Phone"></label>
+                            <input placeholder="Enter your phone number" type="number" asp-for="Phone" class="form-control" />
+                            <span asp-validation-for="Phone" class="text-danger"></span>
+                        </div>
+                        <div class="mt-2 row">
+                            <label asp-for="Password"></label>
+                            <input placeholder="Place your password" type="password" asp-for="Password" class="form-control" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                        <div class="row p-3">
+                            <input type="submit" class="btn btn-success m-1" style="width:150px"></input>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

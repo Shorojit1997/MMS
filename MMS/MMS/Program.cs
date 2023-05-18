@@ -1,6 +1,6 @@
 using MMS.DataService.Data;
 using Microsoft.EntityFrameworkCore;
-
+using MMS.DataService.IConfiguration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +12,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
     options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
 });
+
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork > ();
 
 var app = builder.Build();
 

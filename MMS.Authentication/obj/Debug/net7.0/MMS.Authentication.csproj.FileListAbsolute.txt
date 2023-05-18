@@ -1,0 +1,12 @@
+C:\Dot.NET\Mess management System\MMS.Authentication\bin\Debug\net7.0\MMS.Authentication.deps.json
+C:\Dot.NET\Mess management System\MMS.Authentication\bin\Debug\net7.0\MMS.Authentication.dll
+C:\Dot.NET\Mess management System\MMS.Authentication\bin\Debug\net7.0\MMS.Authentication.pdb
+C:\Dot.NET\Mess management System\MMS.Authentication\obj\Debug\net7.0\MMS.Authentication.csproj.AssemblyReference.cache
+C:\Dot.NET\Mess management System\MMS.Authentication\obj\Debug\net7.0\MMS.Authentication.GeneratedMSBuildEditorConfig.editorconfig
+C:\Dot.NET\Mess management System\MMS.Authentication\obj\Debug\net7.0\MMS.Authentication.AssemblyInfoInputs.cache
+C:\Dot.NET\Mess management System\MMS.Authentication\obj\Debug\net7.0\MMS.Authentication.AssemblyInfo.cs
+C:\Dot.NET\Mess management System\MMS.Authentication\obj\Debug\net7.0\MMS.Authentication.csproj.CoreCompileInputs.cache
+C:\Dot.NET\Mess management System\MMS.Authentication\obj\Debug\net7.0\MMS.Authentication.dll
+C:\Dot.NET\Mess management System\MMS.Authentication\obj\Debug\net7.0\refint\MMS.Authentication.dll
+C:\Dot.NET\Mess management System\MMS.Authentication\obj\Debug\net7.0\MMS.Authentication.pdb
+C:\Dot.NET\Mess management System\MMS.Authentication\obj\Debug\net7.0\ref\MMS.Authentication.dll

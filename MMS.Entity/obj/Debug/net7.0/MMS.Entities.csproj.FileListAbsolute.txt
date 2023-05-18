@@ -22,3 +22,5 @@ C:\Dot.NET\Mess management System\MMS.Entity\obj\Debug\net7.0\MMS.Entities.dll
 C:\Dot.NET\Mess management System\MMS.Entity\obj\Debug\net7.0\refint\MMS.Entities.dll
 C:\Dot.NET\Mess management System\MMS.Entity\obj\Debug\net7.0\MMS.Entities.pdb
 C:\Dot.NET\Mess management System\MMS.Entity\obj\Debug\net7.0\ref\MMS.Entities.dll
+C:\Dot.NET\Mess management System\MMS.Entity\bin\Debug\net7.0\MMS.Entities.runtimeconfig.json
+C:\Dot.NET\Mess management System\MMS.Entity\obj\Debug\net7.0\MMS.Entities.genruntimeconfig.cache
