@@ -52,7 +52,7 @@ namespace MMS.Web.Controllers
                     ModelState.AddModelError("Email", "Please provide a valid email");
                     return View();
                 }
-
+                
                 var isSignin = await _signInManager.PasswordSignInAsync(userExist, person.Password, false, false);
 
                 if (isSignin.Succeeded)

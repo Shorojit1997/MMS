@@ -44,6 +44,8 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 
 builder.Services.AddScoped<SignInManager<IdentityUser>, SignInManager<IdentityUser>>();
 
+builder.Services.AddScoped<RoleManager<IdentityUser>, RoleManager<IdentityUser>>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
