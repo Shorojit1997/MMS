@@ -12,6 +12,11 @@ using MMS.Entities.DbSet;
 using MMS.Authentication.Models.DTO.Outgoing;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
+using MMS.Authentication.IService;
+using MMS.Authentication.Models.Mail;
+using System;
+using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
 
 namespace MMS.Web.Controllers
 {
@@ -21,12 +26,14 @@ namespace MMS.Web.Controllers
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly JwtConfig _jwtConfig;
+        private readonly IEmailService _emailService;
 
         public AuthController(
             IUnitOfWork unitOfWork,
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signManager,
-            IOptionsMonitor<JwtConfig> optionsMonitor
+            IOptionsMonitor<JwtConfig> optionsMonitor,
+            IEmailService emailService
 
 
             ) : base(unitOfWork)
@@ -34,6 +41,7 @@ namespace MMS.Web.Controllers
             _userManager = userManager;
             _signInManager = signManager;
             _jwtConfig = optionsMonitor.CurrentValue;
+            _emailService = emailService;
 
         }
         public IActionResult Login()
@@ -52,9 +60,7 @@ namespace MMS.Web.Controllers
                     ModelState.AddModelError("Email", "Please provide a valid email");
                     return View();
                 }
-                
                 var isSignin = await _signInManager.PasswordSignInAsync(userExist, person.Password, false, false);
-
                 if (isSignin.Succeeded)
                 {
                     var claims = new List<Claim>
@@ -73,6 +79,8 @@ namespace MMS.Web.Controllers
                         new ClaimsPrincipal(claimsIdentity), authProperties);
 
                     return RedirectToAction("Details", "Profile");
+
+
                 }
                 else if (isSignin.IsLockedOut)
                 {
@@ -108,15 +116,10 @@ namespace MMS.Web.Controllers
                 if (userExist != null)
                 {
                     ModelState.AddModelError("Email", "Email already in use another person");
-
-                }
-
-                if (!ModelState.IsValid)
-                {
                     return View();
-
                 }
 
+    
                 //Add new user
                 var newUser = new IdentityUser()
                 {
@@ -132,10 +135,6 @@ namespace MMS.Web.Controllers
                 {
                     var error = isCreated.Errors.Select(x => x.Description).ToList();
                     ModelState.AddModelError("Error", error[0]);
-                   
-                }
-                if (!ModelState.IsValid)
-                {
                     return View();
 
                 }
@@ -151,11 +150,11 @@ namespace MMS.Web.Controllers
                 await _unitOfWork.Persons.Add(_person);
                 await _unitOfWork.CompleteAsync();
 
+
                 var claims = new[]
                  {
                      new Claim(ClaimTypes.Name, person.Email),
                      new Claim(ClaimTypes.Email, person.Email),
-                     
                 };
 
                 var authProperties = new AuthenticationProperties
@@ -167,13 +166,126 @@ namespace MMS.Web.Controllers
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                     new ClaimsPrincipal(claimsIdentity), authProperties);
 
-                return RedirectToAction("Details","Profile");
+                var user = new IdentityUser()
+                 {
+                    Email=person.Email,
+                    SecurityStamp=Guid.NewGuid().ToString(),
+                    UserName= person.Name,
+                };
+
+                var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                var confirmationLink = Url.Action(nameof(ConfirmMail), "Auth", new {Token=token,Email=_person.Email },Request.Scheme);
+                var message = new Message(new string[] { user.Email },"Confirmation email Link",confirmationLink);
+
+                
+               // var result = await _userManager.ConfirmEmailAsync(user, token);
+                //commenting because of bugs
+                //await _emailService.SendMail(message);
+
+
+                //return RedirectToAction("Details", "Profile");
+                return RedirectToAction("SendMail", "Auth");
 
 
             }
             return View();
         }
 
-    
+        public async Task<IActionResult> ConfirmMail(string Token,string Email)
+        {
+            var user = await _userManager.FindByEmailAsync(Email);
+            if(user != null)
+            {
+                var result = await _userManager.ConfirmEmailAsync(user, Token);
+                if(result.Succeeded)
+                {
+
+                    //Update email confirmations
+                    user.EmailConfirmed = true;
+                    await _userManager.UpdateAsync(user);
+
+
+                    var claims = new[]
+                    {
+                     new Claim(ClaimTypes.Name, user.Email),
+                     new Claim(ClaimTypes.Email, user.Email),
+                    };
+
+                    var authProperties = new AuthenticationProperties
+                    {
+                        IsPersistent = false
+                    };
+                    //set cookie for the client side
+                    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+                        new ClaimsPrincipal(claimsIdentity), authProperties);
+
+
+                    return RedirectToAction("Details", "Profile");
+                }
+
+            }
+            return RedirectToAction("Login", "Auth");
+        }
+
+
+        public async Task<IActionResult> ForgotPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ForgotPassword(string email)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user != null)
+            {
+                var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+                var confirmationLink = Url.Action(nameof(ResetPassword), "Auth", new {Token=token,Email=user.Email }, Request.Scheme);
+                var message = new Message(new string[] {user.Email }, "Confirmation email Link", confirmationLink);
+                _emailService.SendMail(message);
+                return RedirectToAction("SendMail","Auth");
+            }
+            ModelState.AddModelError("Error ", "Please provide right email");
+
+            return View();
+        }
+
+
+        public async Task<IActionResult> ResetPassword(string Token,string Email)
+        {
+            var users = new ResetPasswordDTO()
+            {
+                Token = Token,
+                Email = Email
+            };
+      
+            return View(users);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ResetPassword(ResetPasswordDTO Details)
+        {
+            if(!ModelState.IsValid)
+            {
+                return View();
+            }
+            var user = await _userManager.FindByEmailAsync(Details.Email);
+            if (user != null)
+            {
+                
+               var result = await _userManager.ResetPasswordAsync(user, Details.Token,Details.Password);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Details", "Profile");
+                }
+
+            }
+            return RedirectToAction("Login", "Auth");
+        }
+        public IActionResult SendMail()
+        {
+            return View();
+        }
     }
 }

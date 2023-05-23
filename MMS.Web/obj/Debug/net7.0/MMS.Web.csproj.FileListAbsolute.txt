@@ -289,3 +289,7 @@ C:\Dot.NET\Mess management System\MMS.Web\bin\Debug\net7.0\runtimes\unix\lib\net
 C:\Dot.NET\Mess management System\MMS.Web\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
 C:\Dot.NET\Mess management System\MMS.Web\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Dot.NET\Mess management System\MMS.Web\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+C:\Dot.NET\Mess management System\MMS.Web\bin\Debug\net7.0\MailKit.dll
+C:\Dot.NET\Mess management System\MMS.Web\bin\Debug\net7.0\MimeKit.dll
+C:\Dot.NET\Mess management System\MMS.Web\bin\Debug\net7.0\NETCore.MailKit.dll
+C:\Dot.NET\Mess management System\MMS.Web\bin\Debug\net7.0\BouncyCastle.Crypto.dll

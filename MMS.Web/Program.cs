@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using MMS.Authentication.Configuration;
+using MMS.Authentication.IService;
+using MMS.Authentication.Service;
 using MMS.DataService.Data;
 using MMS.DataService.IConfiguration;
 using System.Text;
@@ -38,13 +40,21 @@ builder.Services.AddAuthentication(options =>
     options.AccessDeniedPath = "/Auth/Signup"; // Replace with your access denied path
 });
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<IdentityUser>(options =>
+options.SignIn.RequireConfirmedAccount = true
+)
 .AddEntityFrameworkStores<AppDbContext>();
 
 
 builder.Services.AddScoped<SignInManager<IdentityUser>, SignInManager<IdentityUser>>();
 
-builder.Services.AddScoped<RoleManager<IdentityUser>, RoleManager<IdentityUser>>();
+//builder.Services.AddScoped<RoleManager<IdentityUser>, RoleManager<IdentityUser>>();
+
+var emailConfig = builder.Configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>();
+
+builder.Services.AddSingleton(emailConfig);
+
+builder.Services.AddScoped<IEmailService,EmailService>();
 
 var app = builder.Build();
 

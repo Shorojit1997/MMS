@@ -8,6 +8,8 @@ namespace MMS.Web.Controllers
         public HomeController(IUnitOfWork unitOfWork):base(unitOfWork) { }
         public IActionResult Index()
         {
+            var user = HttpContext.User;
+            string username = user.Identity.Name;
             return View();
         }
     }
