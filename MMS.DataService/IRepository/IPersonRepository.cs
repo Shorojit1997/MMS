@@ -9,6 +9,6 @@ namespace MMS.DataService.IRepository
 {
     public interface IPersonRepository:IGenericRepository<Person>
     {
-
+        Task<Person> GetByEmail(string email);
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using MMS.DataService.Data;
 using MMS.DataService.IRepository;
 using MMS.Entities.DbSet;
@@ -14,6 +15,12 @@ namespace MMS.DataService.Repository
     {
         public PersonRepository(AppDbContext context, ILogger logger) : base(context, logger)
         {
+ 
+        }
+
+        public async Task<Person> GetByEmail(string email)
+        {
+            return await dbset.FirstOrDefaultAsync(x => x.Email == email);
         }
     }
 }

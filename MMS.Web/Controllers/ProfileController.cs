@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using MMS.Authentication.Configuration;
 using MMS.DataService.IConfiguration;
+using MMS.Entities.Dtos.Incomming;
+using MMS.Entities.Dtos.Outgoing;
 
 namespace MMS.Web.Controllers
 {
@@ -20,9 +22,82 @@ namespace MMS.Web.Controllers
             _userManager = userManager;
         }
 
-        public IActionResult Details()
+        public async Task< IActionResult> Details()
         {
-            return View();
+            var email = HttpContext.User.Identity.Name;
+            var person = await _unitOfWork.Persons.GetByEmail(email);
+
+            
+            if (person == null)
+            {
+                return RedirectToAction("Index", "Error");
+            }
+
+            var newPerson = new ProfileUpdateResponseDTO()
+            {
+                Id=person.Id,
+                Name = person.Name,
+                Email = person.Email,
+                Phone = person.Phone,
+                PictureUrl = person.PictureUrl,
+            };
+            ViewBag.PersonId = person.Id;
+            return View(newPerson);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateProfile(ProfileUpdateRequestDTO person, IFormFile ImageFile)
+        {
+
+            try
+            {
+                var email = HttpContext.User.Identity.Name;
+                var existingPerson = await _unitOfWork.Persons.GetByEmail(email);
+
+                var originalpath = existingPerson.PictureUrl;
+                //Delete previous Image
+                if (ImageFile != null)
+                {
+                    string fullPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", existingPerson.PictureUrl);
+                    if (System.IO.File.Exists(fullPath) && existingPerson.PictureUrl != "/images/default.jpg")
+                    {
+                        System.IO.File.Delete(fullPath);
+                    }
+
+                    //Write new image 
+                    originalpath =  DateTime.Now.Ticks + ImageFile.FileName;
+
+
+                    var filePath = Path.Combine("wwwroot", "images", originalpath);
+                    if (existingPerson.PictureUrl != "/images/Default.jpg")
+                    {
+                        using (var stream = new FileStream(filePath, FileMode.Create))
+                        {
+                            await ImageFile.CopyToAsync(stream);
+
+                        }
+                    }
+                    originalpath = "/images/" + originalpath;
+
+                }
+               
+                existingPerson.PictureUrl = originalpath;
+                existingPerson.Name = person.Name!=""? person.Name:existingPerson.Name;
+                existingPerson.Phone = person.Phone != "" ? person.Phone : existingPerson.Phone;
+                
+                _unitOfWork.Persons.Update(existingPerson);
+
+
+                return RedirectToAction("Details", "Profile");
+            }
+            catch (FileNotFoundException)
+            {
+                TempData["message"] = "Image file not found.";
+                return RedirectToAction("Index", "Error");
+            }
+         
+    }
+        
+
     }
 }

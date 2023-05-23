@@ -38,14 +38,17 @@ namespace MMS.DataService.Repository
             throw new NotImplementedException();
         }
 
+
         public virtual async Task<T> GetById(Guid id)
         {
             return await dbset.FindAsync(id);
         }
 
-        public Task<bool> Upsert(T entity)
+        public async void Update(T entity)
         {
-            throw new NotImplementedException();
+            dbset.Update(entity);
+             _context.SaveChanges();
+            return;
         }
     }
 }

@@ -12,5 +12,6 @@ namespace MMS.DataService.IConfiguration
         IPersonRepository Persons { get; }
 
         Task CompleteAsync();
+
     }
 }

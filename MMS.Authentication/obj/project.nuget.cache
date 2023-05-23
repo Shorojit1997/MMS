@@ -1,8 +1,18 @@
 {
   "version": 2,
-  "dgSpecHash": "ybS9t1SmFwXwu7C5/35DKfd+xX80kmklheMZV4SngOu5f6j+SED+jXnJQ7LzeZ5FMUGBVoXAaylFVtjnzx2CJg==",
+  "dgSpecHash": "n+mMVuOVi4rsmQ5foCMzAgVQXlGIHtUbMPqk4+pqhGcHCk8QFdaEpq8gEzi6/zc6IN6j2g6wU6Sslb/tv2FdEQ==",
   "success": true,
   "projectFilePath": "C:\\Dot.NET\\Mess management System\\MMS.Authentication\\MMS.Authentication.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Brain Station 23\\.nuget\\packages\\mailkit\\3.2.0\\mailkit.3.2.0.nupkg.sha512",
+    "C:\\Users\\Brain Station 23\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\6.0.0\\microsoft.extensions.dependencyinjection.6.0.0.nupkg.sha512",
+    "C:\\Users\\Brain Station 23\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\Brain Station 23\\.nuget\\packages\\mimekit\\3.2.0\\mimekit.3.2.0.nupkg.sha512",
+    "C:\\Users\\Brain Station 23\\.nuget\\packages\\netcore.mailkit\\2.1.0\\netcore.mailkit.2.1.0.nupkg.sha512",
+    "C:\\Users\\Brain Station 23\\.nuget\\packages\\portable.bouncycastle\\1.9.0\\portable.bouncycastle.1.9.0.nupkg.sha512",
+    "C:\\Users\\Brain Station 23\\.nuget\\packages\\system.formats.asn1\\6.0.0\\system.formats.asn1.6.0.0.nupkg.sha512",
+    "C:\\Users\\Brain Station 23\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "C:\\Users\\Brain Station 23\\.nuget\\packages\\system.security.cryptography.pkcs\\6.0.0\\system.security.cryptography.pkcs.6.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

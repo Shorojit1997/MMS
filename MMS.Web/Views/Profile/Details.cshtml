@@ -1,3 +1,80 @@
-﻿
+﻿@model MMS.Entities.Dtos.Outgoing.ProfileUpdateResponseDTO
 
-<h1>Hello! I am from Profile </h1>
+<div class="container">
+    <div class="d-flex justify-content-center">
+        <div class="card " style="width:500px">
+            <div class="row">
+                <div class="image-container">
+                    <img src="@Model.PictureUrl" alt="Profile Picture" style="width:400px;height:auto" class="img-fluid rounded-circle">
+                </div>
+            </div>
+            <div class="row m-3">
+                <div class="profile-details">
+                    <h2>Name : @Model.Name</h2>
+                    <p>Phone : @Model.Phone</p>
+                    <p>Email : @Model.Email</p>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Update
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Update Your profile</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        
+
+                        <form asp-controller="Profile" asp-action="UpdateProfile" enctype="multipart/form-data" method="post" class="border-1">
+                            <div asp-validation-summary="All"></div>
+
+                            <div class="mt-2 row">
+                                <label asp-for="Name"></label>
+                                <input placeholder="Enter your Name" type="text" asp-for="Name" class="form-control" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+
+                            <div class="mt-2 row">
+                                <label asp-for="Email"></label>
+                                <input disabled placeholder="Enter your email" type="text" asp-for="Email" class="form-control" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+
+                            <div class="mt-2 row">
+                                <label asp-for="Phone"></label>
+                                <input placeholder="Enter your Phone" type="text" asp-for="Phone" class="form-control" />
+                                <span asp-validation-for="Phone" class="text-danger"></span>
+                            </div>
+
+                            <div class="mt-2 row">
+                                <input placeholder="Enter your Phone" type="file" name="ImageFile" class="form-control" />
+                            </div>
+
+                            <div class="row p-3">
+                                <input type="submit" class="btn btn-success m-1" data-bs-dismiss="modal" style="width:150px"></input>
+                            </div>
+
+
+                        </form>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+     
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>

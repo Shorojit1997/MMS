@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MMS.DataService.Data
 {
-    public class UnitOfWork:IUnitOfWork
+    public class UnitOfWork: IDisposable,IUnitOfWork
     {
         private readonly AppDbContext _context;
         private readonly ILogger _logger;
@@ -28,5 +28,12 @@ namespace MMS.DataService.Data
         {
             await _context.SaveChangesAsync();
         }
+
+        public void Dispose()
+        {
+            _context.Dispose();
+            GC.SuppressFinalize(this);
+        }
+
     }
 }

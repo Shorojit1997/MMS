@@ -25,7 +25,15 @@
                             <span asp-validation-for="Password" class="text-danger"></span>
                         </div>
                         <div class="row p-3">
-                            <input type="submit" class="btn btn-success m-1" style="width:150px"></input>
+                            <div class="col-6">
+                                <input type="submit" class="btn btn-success m-1" style="width:150px"></input>
+                            </div>
+
+                            <div class="col-6">
+                                <a class="nav-link" asp-area="" asp-controller="Auth" asp-action="ForgotPassword">Forgot Password</a>
+                            </div>
+                            
+                           
                         </div>
                     </form>
 

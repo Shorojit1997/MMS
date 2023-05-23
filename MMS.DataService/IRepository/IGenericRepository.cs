@@ -12,6 +12,7 @@ namespace MMS.DataService.IRepository
         Task<T> GetById(Guid id);
         Task<bool> Add(T entity);
         Task<bool> Delete(Guid id, string userId);
-        Task<bool> Upsert(T entity);
+        public void Update(T entity);
+
     }
 }
