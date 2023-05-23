@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "PTTP++ISiJWpwlDPcjq8bLg5s9rngu3DmAX3InPi/Vo=",
+  "Hash": "2CgxxYPWcmEzxlHH/a9hBQfP8Q0lbooQt/vp39yyM0U=",
   "Source": "MMS.Web",
   "BasePath": "_content/MMS.Web",
   "Mode": "Default",
@@ -202,6 +202,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\6382043987998980641me.jpg"
+    },
+    {
+      "Identity": "C:\\Dot.NET\\Mess management System\\MMS.Web\\wwwroot\\images\\638204680673788694Me.jpg",
+      "SourceId": "MMS.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Dot.NET\\Mess management System\\MMS.Web\\wwwroot\\",
+      "BasePath": "_content/MMS.Web",
+      "RelativePath": "images/638204680673788694Me.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\638204680673788694Me.jpg"
+    },
+    {
+      "Identity": "C:\\Dot.NET\\Mess management System\\MMS.Web\\wwwroot\\images\\6382046807704739551me.jpg",
+      "SourceId": "MMS.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Dot.NET\\Mess management System\\MMS.Web\\wwwroot\\",
+      "BasePath": "_content/MMS.Web",
+      "RelativePath": "images/6382046807704739551me.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\6382046807704739551me.jpg"
     },
     {
       "Identity": "C:\\Dot.NET\\Mess management System\\MMS.Web\\wwwroot\\images\\Default.jpg",

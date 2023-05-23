@@ -1,5 +1,7 @@
 ﻿@model MMS.Entities.Dtos.Outgoing.ProfileUpdateResponseDTO
 
+<h4>@TempData["Success"]</h4>
+
 <div class="container">
     <div class="d-flex justify-content-center">
         <div class="card " style="width:500px">
@@ -16,6 +18,9 @@
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Update
                     </button>
+                    <a class="nav-link text-dark" href="@Url.Action("ChangePassword", "Profile")">
+                        Change Password
+                    </a>
                 </div>
 
             </div>

@@ -17,7 +17,6 @@ using MMS.Authentication.Models.Mail;
 using System;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity.UI.V5.Pages.Account.Internal;
 
 namespace MMS.Web.Controllers
 {
@@ -126,7 +125,7 @@ namespace MMS.Web.Controllers
                 {
                     Email = person.Email,
                     UserName = person.Email,
-                    EmailConfirmed = false
+                    EmailConfirmed = true
                 };
 
                 //Adding user to the table
@@ -150,9 +149,9 @@ namespace MMS.Web.Controllers
 
                 await _unitOfWork.Persons.Add(_person);
                 await _unitOfWork.CompleteAsync();
-         
 
-               /* var claims = new[]
+
+                var claims = new[]
                  {
                      new Claim(ClaimTypes.Name, person.Email),
                      new Claim(ClaimTypes.Email, person.Email),
@@ -165,9 +164,9 @@ namespace MMS.Web.Controllers
 
                 var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
-                    new ClaimsPrincipal(claimsIdentity), authProperties);*/
+                    new ClaimsPrincipal(claimsIdentity), authProperties);
 
-                 var user = new IdentityUser()
+                var user = new IdentityUser()
                  {
                     Email=person.Email,
                     SecurityStamp=Guid.NewGuid().ToString(),
@@ -179,9 +178,9 @@ namespace MMS.Web.Controllers
                 var message = new Message(new string[] { user.Email },"Confirmation email Link",confirmationLink);
 
                 
-                var result = await _userManager.ConfirmEmailAsync(user, token);
+               // var result = await _userManager.ConfirmEmailAsync(user, token);
                 //commenting because of bugs
-                await _emailService.SendMail(message);
+                //await _emailService.SendMail(message);
 
 
                 //return RedirectToAction("Details", "Profile");
@@ -252,11 +251,6 @@ namespace MMS.Web.Controllers
             return View();
         }
 
-        public IActionResult SendMail()
-        {
-            return View();
-        }
-
 
         public async Task<IActionResult> ResetPassword(string Token,string Email)
         {
@@ -289,6 +283,9 @@ namespace MMS.Web.Controllers
             }
             return RedirectToAction("Login", "Auth");
         }
-
+        public IActionResult SendMail()
+        {
+            return View();
+        }
     }
 }
