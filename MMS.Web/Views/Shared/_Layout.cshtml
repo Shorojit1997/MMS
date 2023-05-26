@@ -35,10 +35,16 @@
                         else
                         {
                             <li class="nav-item">
+                                <a class="nav-link text-dark" href="@Url.Action("ShowHistory", "Dashboard")">
+                                    Dashboard
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link text-dark" href="@Url.Action("Details", "Profile")">
                                     Profile
                                 </a>
                             </li>
+                           
                         }
 
                        
@@ -61,6 +67,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/DashboardController.js" ></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

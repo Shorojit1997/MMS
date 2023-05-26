@@ -1,0 +1,27 @@
+﻿
+
+@Html.Partial("./Partials/_Headers")
+
+<div class="row">
+
+    <div class="col-3">
+        @Html.Partial("./Partials/_Sidebar")
+    </div>
+    <div class="col-9">
+        <!-- Sidebar -->
+        <div class="row bg-light mt-3">
+            <div class="col-6">
+                <h4>Hi!</h4>
+            </div>
+            <div class="col-6 d-flex justify-content-between">
+                <div></div>
+                <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                    Add New Member
+                </button>
+            </div>
+        </div>
+        @Html.Partial("./Partials/_Table")
+    </div>
+</div>
+
+@Html.Partial("./Partials/_Modals_mess");

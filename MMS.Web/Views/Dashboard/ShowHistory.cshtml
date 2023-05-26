@@ -1,0 +1,26 @@
+﻿@model MMS.Entities.Dtos.Incomming.MessRequestDTO
+
+@Html.Partial("./Partials/_Headers")
+
+
+<!-- Main Content -->
+<div class="container mt-4">
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="row bg-light">
+            <div class="col-6">
+                <h4>Hi! Mess History.</h4>
+            </div>
+            <div class="col-6 d-flex justify-content-between">
+                <div></div>
+                <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Create New
+                </button>
+            </div>
+        </div>
+        @Html.Partial("./Partials/_Card")
+    </div>
+</div>
+</div>
+
+@Html.Partial("./Partials/_Modals")

@@ -1,0 +1,35 @@
+﻿<table class="table table-hover">
+
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Status</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in ViewBag.Members)
+        {
+            <tr>
+                <td>@item.Name</td>
+                @if (item.IsManager)
+                {
+                    <td><b>Manager</b></td>
+                }
+                else
+                {
+                    <td>Member</td>
+                }
+                <td>@item.Email</td>
+                <td>@item.Phone</td>
+                <td>
+                    <a class="btn btn-sm btn-danger" href="@Url.Action("RemoveFromMess", "Dashboard", new { MessId = ViewBag.Id,UserId=item.Id })">Remove</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>

@@ -16,5 +16,8 @@ namespace MMS.Entities.DbSet
         public string Phone { get; set; }
 
         public string? PictureUrl { get; set; } = "/images/Default.jpg";
+
+        public List<MessHaveMember> Members { get; set; } = new List<MessHaveMember>();
+
     }
 }

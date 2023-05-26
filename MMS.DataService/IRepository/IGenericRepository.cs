@@ -11,7 +11,7 @@ namespace MMS.DataService.IRepository
         Task<IEnumerable<T>> All();
         Task<T> GetById(Guid id);
         Task<bool> Add(T entity);
-        Task<bool> Delete(Guid id, string userId);
+        Task<bool> Delete(T entity);
         public void Update(T entity);
 
     }

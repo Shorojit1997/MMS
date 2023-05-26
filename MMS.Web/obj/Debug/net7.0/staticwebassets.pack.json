@@ -49,8 +49,24 @@
       "PackagePath": "staticwebassets\\images\\6382046807704739551me.jpg"
     },
     {
+      "Id": "C:\\Dot.NET\\Mess management System\\MMS.Web\\wwwroot\\images\\638205302961321103Me.jpg",
+      "PackagePath": "staticwebassets\\images\\638205302961321103Me.jpg"
+    },
+    {
+      "Id": "C:\\Dot.NET\\Mess management System\\MMS.Web\\wwwroot\\images\\638207049328248334Me.jpg",
+      "PackagePath": "staticwebassets\\images\\638207049328248334Me.jpg"
+    },
+    {
+      "Id": "C:\\Dot.NET\\Mess management System\\MMS.Web\\wwwroot\\images\\6382072302298291511me.jpg",
+      "PackagePath": "staticwebassets\\images\\6382072302298291511me.jpg"
+    },
+    {
       "Id": "C:\\Dot.NET\\Mess management System\\MMS.Web\\wwwroot\\images\\Default.jpg",
       "PackagePath": "staticwebassets\\images\\Default.jpg"
+    },
+    {
+      "Id": "C:\\Dot.NET\\Mess management System\\MMS.Web\\wwwroot\\js\\DashboardController.js",
+      "PackagePath": "staticwebassets\\js\\DashboardController.js"
     },
     {
       "Id": "C:\\Dot.NET\\Mess management System\\MMS.Web\\wwwroot\\js\\site.js",
