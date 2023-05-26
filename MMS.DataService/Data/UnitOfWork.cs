@@ -17,11 +17,18 @@ namespace MMS.DataService.Data
 
         public IPersonRepository Persons { get;private set; }
 
+        public IMessRepository Messes { get; private set; }
+
+        public IMessMemberRepository MessHaveMembers { get; private set; }
+
         public UnitOfWork(AppDbContext context, ILoggerFactory loggerFactory)
         {
             _context = context;
             _logger = loggerFactory.CreateLogger<UnitOfWork>();
             Persons = new PersonRepository(context, _logger);
+            Messes = new MessRepository(context, _logger);
+            MessHaveMembers= new MessMemberRepository(context, _logger);
+
         }
 
         public async Task CompleteAsync()

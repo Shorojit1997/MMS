@@ -32,8 +32,8 @@ namespace MMS.Web.Controllers
 
         public async Task< IActionResult> Details()
         {
-            var email = HttpContext.User.Identity.Name;
-            var person = await _unitOfWork.Persons.GetByEmail(email);
+            var Id = HttpContext.User.Identity.Name;
+            var person = await _unitOfWork.Persons.GetById(Guid.Parse(Id));
 
             
             if (person == null)
@@ -59,8 +59,8 @@ namespace MMS.Web.Controllers
 
             try
             {
-                var email = HttpContext.User.Identity.Name;
-                var existingPerson = await _unitOfWork.Persons.GetByEmail(email);
+                var Id = HttpContext.User.Identity.Name;
+                var existingPerson = await _unitOfWork.Persons.GetById(Guid.Parse(Id)); ;
 
                 var originalpath = existingPerson.PictureUrl;
                 //Delete previous Image

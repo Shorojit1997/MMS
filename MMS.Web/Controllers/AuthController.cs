@@ -65,7 +65,8 @@ namespace MMS.Web.Controllers
                 {
                     var claims = new List<Claim>
                     {
-                       new Claim(ClaimTypes.Name, userExist.Email),
+                    
+                       new Claim(ClaimTypes.Name, userExist.Id),
                        new Claim(ClaimTypes.Email, userExist.Email)
                      };
 
@@ -78,7 +79,7 @@ namespace MMS.Web.Controllers
                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                         new ClaimsPrincipal(claimsIdentity), authProperties);
 
-                    return RedirectToAction("Details", "Profile");
+                    return RedirectToAction("ShowHistory", "Dashboard");
 
 
                 }
@@ -150,12 +151,11 @@ namespace MMS.Web.Controllers
                 await _unitOfWork.Persons.Add(_person);
                 await _unitOfWork.CompleteAsync();
 
-
-                var claims = new[]
-                 {
-                     new Claim(ClaimTypes.Name, person.Email),
-                     new Claim(ClaimTypes.Email, person.Email),
-                };
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name,  newUser.Id),
+                    new Claim(ClaimTypes.Email, newUser.Email)
+                 };
 
                 var authProperties = new AuthenticationProperties
                 {
@@ -184,7 +184,7 @@ namespace MMS.Web.Controllers
 
 
                 //return RedirectToAction("Details", "Profile");
-                return RedirectToAction("SendMail", "Auth");
+                return RedirectToAction("ShowHistory", "Dashboard");
 
 
             }
@@ -286,6 +286,12 @@ namespace MMS.Web.Controllers
         public IActionResult SendMail()
         {
             return View();
+        }
+
+        public async Task<ActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Login", "Auth");
         }
     }
 }

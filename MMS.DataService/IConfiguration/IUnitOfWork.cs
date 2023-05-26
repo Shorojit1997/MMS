@@ -10,6 +10,9 @@ namespace MMS.DataService.IConfiguration
     public interface IUnitOfWork
     {
         IPersonRepository Persons { get; }
+        IMessRepository Messes { get; }
+
+        IMessMemberRepository MessHaveMembers { get; }
 
         Task CompleteAsync();
 

@@ -33,9 +33,10 @@ namespace MMS.DataService.Repository
             return await dbset.ToListAsync();
         }
 
-        public virtual async Task<bool> Delete(Guid id, string userId)
+        public virtual async Task<bool> Delete(T entity)
         {
-            throw new NotImplementedException();
+           
+            return true;
         }
 
 
@@ -46,7 +47,7 @@ namespace MMS.DataService.Repository
 
         public async void Update(T entity)
         {
-            dbset.Update(entity);
+              dbset.Update(entity);
              _context.SaveChanges();
             return;
         }

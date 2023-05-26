@@ -17,6 +17,9 @@ namespace MMS.DataService.Data
 
         }
   
-        public virtual DbSet<Person> Persons { get; set; }
+        public  DbSet<Person> Persons { get; set; }
+        public  DbSet<Mess> Messes { get; set; }
+
+        public DbSet<MessHaveMember> MessHaveMembers { get; set; }
     }
 }

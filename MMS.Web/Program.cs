@@ -8,6 +8,7 @@ using MMS.Authentication.IService;
 using MMS.Authentication.Service;
 using MMS.DataService.Data;
 using MMS.DataService.IConfiguration;
+using MMS.DataService.Middleware;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -55,6 +56,7 @@ var emailConfig = builder.Configuration.GetSection("EmailConfiguration").Get<Ema
 builder.Services.AddSingleton(emailConfig);
 
 builder.Services.AddScoped<IEmailService,EmailService>();
+builder.Services.AddTransient<BindingUser>();
 
 var app = builder.Build();
 
@@ -72,7 +74,7 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
-
+app.UseMiddleware<BindingUser>();
 
 app.MapControllerRoute(
     name: "default",
