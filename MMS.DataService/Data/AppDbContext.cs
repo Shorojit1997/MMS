@@ -19,7 +19,9 @@ namespace MMS.DataService.Data
   
         public  DbSet<Person> Persons { get; set; }
         public  DbSet<Mess> Messes { get; set; }
-
+        public DbSet<Month> Months { get; set; }
         public DbSet<MessHaveMember> MessHaveMembers { get; set; }
+
+        public DbSet<Account> Accounts { get; set; }
     }
 }

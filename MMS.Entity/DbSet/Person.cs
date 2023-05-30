@@ -19,5 +19,7 @@ namespace MMS.Entities.DbSet
 
         public List<MessHaveMember> Members { get; set; } = new List<MessHaveMember>();
 
+        public List<Account> Accounts { get; set; } = new List<Account>();
+
     }
 }

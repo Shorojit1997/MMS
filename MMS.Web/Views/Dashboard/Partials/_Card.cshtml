@@ -8,8 +8,8 @@
                     <h5 class="card-title">@item.Name</h5>
                     <i><b>Date : </b>@item.StartDate  </i><br></br>
                     <a class="btn btn-sm btn-info" href="@Url.Action("MessMembers","Dashboard",new{Id=item.Id})">Enter</a>
-                    <a class="btn btn-sm btn-primary" href="@Url.Action("EditMessName","Dashboard",new{Id=item.Id})">Edit</a>
-                    <a class="btn btn-sm btn-danger" href="@Url.Action("DeleteMessHistory","Dashboard",new{Id=item.Id})">Delete</a>
+                            <a class="btn btn-sm btn-primary" href="@Url.Action("EditMessHistory","Dashboard",new{MessId=item.Id})">Edit</a>
+                    <a class="btn btn-sm btn-danger" href="@Url.Action("DeleteMessHistory","Dashboard",new{MessId=item.Id})">Delete</a>
 
                 </div>
             </div>

@@ -1,0 +1,39 @@
+﻿
+@model MMS.Entities.Dtos.Incomming.AccountDTO
+
+
+<!-- Modal -->
+<div class="modal fade" id="account_details" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Change Your Account Settings</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form asp-controller="Account" asp-action="Edit_Accounts" method="post" class="border-1">
+                    <div asp-validation-summary="All"></div>
+
+                    <div class="mt-2 row">
+                        <label asp-for="ClientId"></label>
+                        <input  type="text" asp-for="ClientId" class="form-control" />
+                        <span asp-validation-for="ClientId" class="text-danger"></span>
+                    </div>
+
+                    <div class="mt-2 row">
+                        <label asp-for="ClientSecret"></label>
+                        <input  type="text" asp-for="ClientSecret" class="form-control" />
+                        <span asp-validation-for="ClientSecret" class="text-danger"></span>
+                    </div>
+
+                    <div class="row p-3">
+                        <input type="submit" class="btn btn-success m-1" data-bs-dismiss="modal" style="width:150px"></input>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

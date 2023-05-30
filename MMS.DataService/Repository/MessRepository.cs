@@ -19,6 +19,17 @@ namespace MMS.DataService.Repository
         {
            
         }
+
+        public async Task<bool> DeleteMessByMessId(Guid Id)
+        {
+             var mess= await dbset.FirstOrDefaultAsync(u=> u.Id==Id);
+            if (mess!=null)
+            {
+                dbset.Remove(mess);
+            }
+            return true;
+        }
+
         public async Task<IEnumerable<Mess> > GetByPersonId(Guid Id)
         {
             return null;

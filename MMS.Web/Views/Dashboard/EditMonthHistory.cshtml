@@ -1,0 +1,37 @@
+﻿@model MMS.Entities.Dtos.Incomming.MonthDTO
+
+
+<div class="row align-items-center justify-content-center">
+
+    <div class="card w-50">
+        <div class="card-header">
+            <h4>Edit Month History</h4>
+        </div>
+        <div class="card-body">
+            <form asp-controller="Dashboard" asp-action="EditMonthHistory" method="post" class="border-1">
+                <div asp-validation-summary="All"></div>
+
+                <div class="mt-2 row">
+                    <label asp-for="Name"></label>
+                    <input placeholder="Enter month Name" type="text" asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="mt-2 row">
+                    <label asp-for="StartDate"></label>
+                    <input placeholder="Start Date" type="date" asp-for="StartDate" class="form-control" />
+                    <span asp-validation-for="StartDate" class="text-danger"></span>
+                </div>
+                <input type="hidden" name="Id" value="@Model.Id" />
+                <input type="hidden" name="MessId" value="@Model.MessId" />
+
+                <div class="row p-3 justify-content-center">
+                    <input type="submit" class="btn btn-success m-1" style="width:150px" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+

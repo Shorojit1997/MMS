@@ -1,0 +1,29 @@
+﻿@model MMS.Entities.Dtos.Incomming.MonthDTO
+
+@Html.Partial("./Partials/_Headers")
+
+<!-- Main Content -->
+ <div class="row mt-4">
+        
+        <div class="col-3">
+            @Html.Partial("./Partials/_Sidebar")
+       </div>
+
+       <div class="col-9">
+             <!-- Sidebar -->
+        <div class="row bg-light">
+            <div class="col-6">
+                <h4>Month History</h4>
+            </div>
+            <div class="col-6 d-flex justify-content-between">
+                <div></div>
+                <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal12">
+                    Create New
+                </button>
+            </div>
+        </div>
+        @Html.Partial("./Partials/_CardForMonth")
+        </div>
+    </div>
+
+@Html.Partial("./Partials/_ModalsForMonthHistory")

@@ -13,6 +13,8 @@ namespace MMS.DataService.IRepository
         Task<IEnumerable<Mess>> GetByPersonId(Guid personId);
         Task<IEnumerable<PersonDTO>> GetAllMembersByMessId(Guid Id);
 
+        Task<MessHaveMember> GetByMessIdAndPersonId(Guid messId, Guid personId);
+
         Task<bool> RemoveByMessIdAndPersonId(Guid messId,Guid personId, Guid currentPersonId);
 
     }
