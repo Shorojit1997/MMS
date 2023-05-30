@@ -10,5 +10,7 @@ namespace MMS.DataService.IRepository
     public interface IMessRepository:IGenericRepository<Mess>
     {
         Task<IEnumerable<Mess>> GetByPersonId(Guid Id);
+
+        Task<bool> DeleteMessByMessId(Guid Id);
     }
 }

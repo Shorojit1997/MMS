@@ -24,7 +24,9 @@ namespace MMS.DataService.Middleware
                var person= await _unitOfWork.Persons.GetById(Guid.Parse(Id));
                 if(person != null)
                 {
-                    context.Items["Person"]= person;
+                    context.Items["Name"]= person.Name;
+                    context.Items["PersonId"]= person.Id;
+                   
                 }
             }
             

@@ -23,7 +23,7 @@ namespace MMS.DataService.Repository
         }
         public async Task<IEnumerable<Mess> > GetByPersonId(Guid personId)
         {
-             return await dbset.Include(m=>m.Messes).Where(a=>a.PersonId==personId).Select(item=>item.Messes).OrderByDescending(d=>d.UpdateDate).ToListAsync();
+             return await dbset.Include(m=>m.Messes).Where(a=>a.PersonId==personId).Select(item=>item.Messes).OrderByDescending(d=>d.UpdatedAt).ToListAsync();
         }
 
         public async Task<IEnumerable<PersonDTO>> GetAllMembersByMessId(Guid Id)
@@ -65,5 +65,15 @@ namespace MMS.DataService.Repository
             }
             return false;
         }
+
+        public async Task<MessHaveMember> GetByMessIdAndPersonId(Guid messId, Guid personId)
+        {
+            return await dbset.FirstOrDefaultAsync(e => e.MessId == messId && e.PersonId == personId);
+            
+        }
+
+
+
+
     }
 }

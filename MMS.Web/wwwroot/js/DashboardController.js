@@ -32,7 +32,15 @@ $(document).ready(function () {
                             </div>
                            <div class="col-auto d-flex align-items-center">
                                  <div class="justify-content-center">
-                                      <a href="/Dashboard/AddIntoMess?MessId=${messId}&UserId=${response[i].id}" class="btn btn-primary">Add</a>
+                                     <div class="dropdown">
+                                         <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+                                             Add
+                                         </button>
+                                         <ul class="dropdown-menu">
+                                              <li><a href="/Dashboard/AddIntoMess?MessId=${messId}&UserId=${response[i].id}&type=Member" class="btn btn-success">As Member</a></li>
+                                              <li><a href="/Dashboard/AddIntoMess?MessId=${messId}&UserId=${response[i].id}&type=Manager" class="btn btn-success">As Manager</a></li>
+                                        </ul>
+                                       </div>
                                  </div>
                             </div>
 

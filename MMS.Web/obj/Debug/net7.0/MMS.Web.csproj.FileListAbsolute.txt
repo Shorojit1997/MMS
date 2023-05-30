@@ -293,3 +293,5 @@ C:\Dot.NET\Mess management System\MMS.Web\bin\Debug\net7.0\MailKit.dll
 C:\Dot.NET\Mess management System\MMS.Web\bin\Debug\net7.0\MimeKit.dll
 C:\Dot.NET\Mess management System\MMS.Web\bin\Debug\net7.0\NETCore.MailKit.dll
 C:\Dot.NET\Mess management System\MMS.Web\bin\Debug\net7.0\BouncyCastle.Crypto.dll
+C:\Dot.NET\Mess management System\MMS.Web\bin\Debug\net7.0\BraintreeHttp-Dotnet.dll
+C:\Dot.NET\Mess management System\MMS.Web\bin\Debug\net7.0\Source.dll

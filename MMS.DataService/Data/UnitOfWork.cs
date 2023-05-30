@@ -20,7 +20,9 @@ namespace MMS.DataService.Data
         public IMessRepository Messes { get; private set; }
 
         public IMessMemberRepository MessHaveMembers { get; private set; }
+        public IMonthRepository Months { get; private set; }
 
+        public IAccountRepository Accounts { get; private set; }
         public UnitOfWork(AppDbContext context, ILoggerFactory loggerFactory)
         {
             _context = context;
@@ -28,7 +30,8 @@ namespace MMS.DataService.Data
             Persons = new PersonRepository(context, _logger);
             Messes = new MessRepository(context, _logger);
             MessHaveMembers= new MessMemberRepository(context, _logger);
-
+            Months= new MonthRepository(context, _logger);
+            Accounts = new AccountRepository(context, _logger);
         }
 
         public async Task CompleteAsync()

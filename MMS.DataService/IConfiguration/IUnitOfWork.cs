@@ -14,6 +14,9 @@ namespace MMS.DataService.IConfiguration
 
         IMessMemberRepository MessHaveMembers { get; }
 
+        IMonthRepository Months { get; }
+
+        IAccountRepository Accounts { get; }
         Task CompleteAsync();
 
     }

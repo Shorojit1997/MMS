@@ -35,7 +35,7 @@ namespace MMS.DataService.Repository
 
         public virtual async Task<bool> Delete(T entity)
         {
-           
+            dbset.Remove(entity);
             return true;
         }
 
@@ -45,11 +45,10 @@ namespace MMS.DataService.Repository
             return await dbset.FindAsync(id);
         }
 
-        public async void Update(T entity)
+        public void Update(T entity)
         {
               dbset.Update(entity);
-             _context.SaveChanges();
-            return;
+              return;
         }
     }
 }

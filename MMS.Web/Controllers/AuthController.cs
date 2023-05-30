@@ -146,7 +146,7 @@ namespace MMS.Web.Controllers
                 _person.Email = person.Email;
                 _person.Phone = person.Phone;
 
-                _person.UpdateDate = DateTime.Now;
+                _person.UpdatedAt = DateTime.Now;
 
                 await _unitOfWork.Persons.Add(_person);
                 await _unitOfWork.CompleteAsync();
