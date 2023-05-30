@@ -295,3 +295,8 @@ C:\Dot.NET\Mess management System\MMS.Web\bin\Debug\net7.0\NETCore.MailKit.dll
 C:\Dot.NET\Mess management System\MMS.Web\bin\Debug\net7.0\BouncyCastle.Crypto.dll
 C:\Dot.NET\Mess management System\MMS.Web\bin\Debug\net7.0\BraintreeHttp-Dotnet.dll
 C:\Dot.NET\Mess management System\MMS.Web\bin\Debug\net7.0\Source.dll
+C:\Dot.NET\Mess management System\MMS.Web\bin\Debug\net7.0\Microsoft.Extensions.Configuration.dll
+C:\Dot.NET\Mess management System\MMS.Web\bin\Debug\net7.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Dot.NET\Mess management System\MMS.Web\bin\Debug\net7.0\Microsoft.Extensions.Primitives.dll
+C:\Dot.NET\Mess management System\MMS.Web\bin\Debug\net7.0\PayPalCheckoutSdk.dll
+C:\Dot.NET\Mess management System\MMS.Web\bin\Debug\net7.0\PayPalHttp-Dotnet.dll

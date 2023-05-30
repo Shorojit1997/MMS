@@ -9,6 +9,7 @@ using MMS.Authentication.Service;
 using MMS.DataService.Data;
 using MMS.DataService.IConfiguration;
 using MMS.DataService.Middleware;
+using MMS.DataService.Paypal;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -41,6 +42,10 @@ builder.Services.AddAuthentication(options =>
     options.AccessDeniedPath = "/Auth/Signup"; // Replace with your access denied path
 });
 
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(2);
+});
 builder.Services.AddDefaultIdentity<IdentityUser>(options =>
 options.SignIn.RequireConfirmedAccount = true
 )
@@ -75,6 +80,7 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseMiddleware<BindingUser>();
+app.UseSession();
 
 app.MapControllerRoute(
     name: "default",

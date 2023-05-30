@@ -18,7 +18,9 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0-preview.4.23259.5" />
     <PackageReference Include="PayPal" Version="2.0.0-rc2" />
+    <PackageReference Include="PayPalCheckoutSdk" Version="1.0.4" />
   </ItemGroup>
 
   <ItemGroup>

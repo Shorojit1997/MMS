@@ -108,6 +108,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Paypal/Deposit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF5cGFsXERlcG9zaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Paypal/Success.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF5cGFsXFN1Y2Nlc3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Dot.NET/Mess management System/MMS.Web/Views/Profile/ChangePassword.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZmlsZVxDaGFuZ2VQYXNzd29yZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
