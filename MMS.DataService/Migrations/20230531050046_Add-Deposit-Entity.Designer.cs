@@ -4,6 +4,7 @@ using MMS.DataService.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MMS.DataService.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230531050046_Add-Deposit-Entity")]
+    partial class AddDepositEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -67,16 +70,6 @@ namespace MMS.DataService.Migrations
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("MessId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("OrderId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("PersonId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<int?>("Status")
                         .HasColumnType("int");
 
@@ -87,10 +80,6 @@ namespace MMS.DataService.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("MessId");
-
-                    b.HasIndex("PersonId");
 
                     b.ToTable("Deposits");
                 });
@@ -443,25 +432,6 @@ namespace MMS.DataService.Migrations
                     b.Navigation("Person");
                 });
 
-            modelBuilder.Entity("MMS.Entities.DbSet.Deposit", b =>
-                {
-                    b.HasOne("MMS.Entities.DbSet.Mess", "Mess")
-                        .WithMany("Deposits")
-                        .HasForeignKey("MessId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MMS.Entities.DbSet.Person", "Person")
-                        .WithMany("Deposits")
-                        .HasForeignKey("PersonId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Mess");
-
-                    b.Navigation("Person");
-                });
-
             modelBuilder.Entity("MMS.Entities.DbSet.MessHaveMember", b =>
                 {
                     b.HasOne("MMS.Entities.DbSet.Mess", "Messes")
@@ -545,8 +515,6 @@ namespace MMS.DataService.Migrations
 
             modelBuilder.Entity("MMS.Entities.DbSet.Mess", b =>
                 {
-                    b.Navigation("Deposits");
-
                     b.Navigation("Members");
 
                     b.Navigation("Months");
@@ -555,8 +523,6 @@ namespace MMS.DataService.Migrations
             modelBuilder.Entity("MMS.Entities.DbSet.Person", b =>
                 {
                     b.Navigation("Accounts");
-
-                    b.Navigation("Deposits");
 
                     b.Navigation("Members");
                 });

@@ -72,8 +72,13 @@ namespace MMS.DataService.Repository
             
         }
 
-
-
-
+        public async Task<IEnumerable<Guid>> GetAllManagersDetailsByMessId(Guid messId)
+        {
+            return await dbset
+                .Include(e => e.Persons)
+                .Where(x => x.MessId == messId && x.IsManager == true)
+                .Select(item => item.PersonId)
+                .ToListAsync();
+        }
     }
 }

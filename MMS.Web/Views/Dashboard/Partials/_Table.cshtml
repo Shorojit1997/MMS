@@ -26,7 +26,7 @@
                 <td>@item.Email</td>
                 <td>@item.Phone</td>
                 <td>
-                    <a class="btn btn-sm btn-danger" href="@Url.Action("RemoveFromMess", "Dashboard", new { MessId = ViewBag.Id,UserId=item.Id })">Remove</a>
+                    <a class="btn btn-sm btn-danger" href="@Url.Action("RemoveFromMess", "Dashboard", new { MessId = ViewBag.MessId,UserId=item.Id })">Remove</a>
                 </td>
             </tr>
         }

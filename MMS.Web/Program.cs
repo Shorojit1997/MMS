@@ -48,7 +48,7 @@ builder.Services.AddSession(options =>
 });
 builder.Services.AddDefaultIdentity<IdentityUser>(options =>
 options.SignIn.RequireConfirmedAccount = true
-)
+).AddRoles<IdentityRole>()
 .AddEntityFrameworkStores<AppDbContext>();
 
 

@@ -1,0 +1,34 @@
+﻿
+
+<table class="table table-hover">
+
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in ViewBag.Transactions)
+        {
+            <tr>
+                <td>@item.PersonName</td>
+                <td>@item.Amount</td>
+                @if (item.Success)
+                {
+                    <td style="color:green"><b>Success</b></td>
+                }
+                else
+                {
+                    <td style="color:red">Failed</td>
+                }
+                
+                <td>@item.CreatedAt</td>
+            </tr>
+        }
+    </tbody>
+
+</table>

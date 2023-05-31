@@ -64,7 +64,7 @@ namespace MMS.DataService.Paypal
                 {
                     new()
                     {
-                        reference_id = "43523",
+                        reference_id = Guid.NewGuid().ToString().ToUpper().Substring(0,5),
                         amount = new Amount
                         {
                             currency_code = currency,

@@ -1,0 +1,19 @@
+﻿
+@Html.Partial("../Dashboard//Partials/_Headers")
+
+<div class="row mt-4">
+    <div class="col-3">
+        @Html.Partial("../Dashboard/Partials/_Sidebar")
+    </div>
+    <div class="col-9">
+        <!-- Sidebar -->
+        <div class="row bg-light mt-3">
+            <div class="col-6">
+                <h4>Transactions!</h4>
+            </div>
+        </div>
+        @Html.Partial("_Table_for_account")
+    </div>
+</div>
+
+@Html.Partial("../Dashboard/Partials/_Modals_mess");

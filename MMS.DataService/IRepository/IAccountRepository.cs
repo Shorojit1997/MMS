@@ -11,5 +11,7 @@ namespace MMS.DataService.IRepository
     public interface IAccountRepository:IGenericRepository<Account>
     {
         Task<Account> GetAccountDetailsByPersonId(Guid personId);
+
+
     }
 }
