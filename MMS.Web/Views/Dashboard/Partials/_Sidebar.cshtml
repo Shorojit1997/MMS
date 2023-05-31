@@ -5,8 +5,9 @@
 <div class="list-group">
     <a class="list-group-item list-group-item-action"  href="@Url.Action("MessMembers","Dashboard",new{Id=ViewBag.MessId})" >Members</a>
    
-     <a class="list-group-item list-group-item-action"  href="@Url.Action("ShowMonthHistory","Dashboard",new{MessId=ViewBag.MessId})" >Month History</a>
-    <a href="#" class="list-group-item list-group-item-action">Attendance</a>
+    <a class="list-group-item list-group-item-action"  href="@Url.Action("ShowMonthHistory","Dashboard",new{MessId=ViewBag.MessId})" >Month History</a>
+    <a class="list-group-item list-group-item-action" href="@Url.Action("Deposit","Paypal",new{MessId=ViewBag.MessId})">Deposit</a>
+    <a class="list-group-item list-group-item-action" href="@Url.Action("MessTransactions","Account",new{MessId=ViewBag.MessId})">Transactions</a>
     <a href="#" class="list-group-item list-group-item-action">Payment</a>
     <a href="#" class="list-group-item list-group-item-action">Complaints</a>
     <a href="#" class="list-group-item list-group-item-action">Reports</a>

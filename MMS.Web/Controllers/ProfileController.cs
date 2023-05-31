@@ -94,6 +94,7 @@ namespace MMS.Web.Controllers
                 existingPerson.Phone = person.Phone != "" ? person.Phone : existingPerson.Phone;
                 
                 _unitOfWork.Persons.Update(existingPerson);
+                await _unitOfWork.CompleteAsync();
 
 
                 return RedirectToAction("Details", "Profile");

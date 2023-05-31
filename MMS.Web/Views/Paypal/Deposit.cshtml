@@ -1,0 +1,33 @@
+﻿@model MMS.Entities.Dtos.Incomming.DepositDTO
+
+
+<div class="d-flex justify-content-center align-items-center">
+    <div class="card m-2 w-50">
+        <div class="card-header">
+            <h4 class="m-2">Deposit</h4>
+        </div>
+        <div class="card-body">
+            <form asp-controller="Paypal" asp-action="Deposit" method="post" class="border-1">
+                <div asp-validation-summary="All"></div>
+
+                <div class="row p-0 m-0">
+                    <label asp-for="Amount"></label>
+                    <input placeholder="Amount" type="number" asp-for="Amount" class="form-control" />
+                    <span asp-validation-for="Amount" class="text-danger"></span>
+                </div>
+                <input type="text" asp-for="MessId" hidden />
+                <div class="mt-2 row">
+
+                    <div class="row p-3">
+                        <div class="col-4">
+                            <input type="submit" class="btn btn-success m-1" data-bs-dismiss="modal" style="width:150px"></input>
+                        </div>
+                        <div class="col-4">
+                            <a class="btn btn-info m-1" href="@Url.Action("MessMembers","Dashboard",new{Id=Model.MessId})">Back</a>
+                        </div>
+                    </div>
+            </form>
+            
+        </div>
+    </div>
+</div>

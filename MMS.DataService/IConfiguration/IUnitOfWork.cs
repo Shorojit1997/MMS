@@ -17,6 +17,8 @@ namespace MMS.DataService.IConfiguration
         IMonthRepository Months { get; }
 
         IAccountRepository Accounts { get; }
+
+        IDepositRepository Deposits { get; }
         Task CompleteAsync();
 
     }

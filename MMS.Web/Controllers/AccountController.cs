@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MMS.DataService.IConfiguration;
+using MMS.DataService.Others;
 using MMS.Entities.DbSet;
 using MMS.Entities.Dtos.Incomming;
 
@@ -68,5 +69,54 @@ namespace MMS.Web.Controllers
             //If completed the update procedure then Redirect to the Index page
             return RedirectToAction("Index","Account");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> MessTransactions(string MessId)
+        {
+            if (MessId == null || !ValidityChecker.IsValidGuid(MessId))
+            {
+                return RedirectToAction("ShowHistory", "Dashboard");
+            }
+
+            ViewBag.MessId = MessId;
+            var id= HttpContext.User.Identity.Name;
+
+            var transactions = new List<DepositDTO>();
+            transactions= await _unitOfWork.Deposits.GetTransactionsByMessId(Guid.Parse(MessId))??transactions;
+        
+
+            ViewBag.Transactions = transactions;
+
+            return View();
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> Transactions()
+        {
+           
+            var id = HttpContext.User.Identity.Name;
+
+            var transactions = new List<DepositDTO>();
+            transactions = await _unitOfWork.Deposits.GetTransactionsByPersonId(Guid.Parse(id)) ?? transactions;
+            ViewBag.Transactions = transactions;
+
+            return View();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

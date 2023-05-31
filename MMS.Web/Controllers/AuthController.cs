@@ -17,10 +17,12 @@ using MMS.Authentication.Models.Mail;
 using System;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MMS.Web.Controllers
 {
 
+    [AllowAnonymous]
     public class AuthController : BaseController
     {
         private readonly UserManager<IdentityUser> _userManager;

@@ -28,30 +28,21 @@ namespace MMS.DataService.Repository
 
         public async Task<IEnumerable<PersonDTO>> GetAllMembersByQueryParameters(string query, string types)
         {
-          /*  var records = (from p in _context.Persons
-                           join mtp in _context.MessHaveMembers on p.Id equals mtp.PersonId
-                           where mtp.MessId != MessId && p.Name.Contains("dfasd")
-                           select p).ToList();*/
 
             if (query == null)
             {
                 return Enumerable.Empty<PersonDTO>();
             }
 
-            string newQuery = "";
-            foreach (var item in query)
-            {
-                newQuery += (item);
-                newQuery+= "%";
-            }
+            string newQuery = "%"+query+"%";
 
             if (types == "Email")
                 return await dbset.Include(a=>a.Members).Where(u => EF.Functions.Like(u.Email, newQuery)).Select(e=> new PersonDTO (){ Name=e.Name,Email=e.Email,Phone=e.Phone,PictureUrl=e.PictureUrl,Id=e.Id}).ToListAsync();
             else if(types =="Phone")
-                return await dbset.Where(u => EF.Functions.Like(u.Phone, newQuery)).Select(e => new PersonDTO() { Name = e.Name, Email = e.Email, Phone = e.Phone, PictureUrl = e.PictureUrl, Id = e.Id }).ToListAsync();
+                return await dbset.Include(a => a.Members).Where(u => EF.Functions.Like(u.Phone, newQuery)).Select(e => new PersonDTO() { Name = e.Name, Email = e.Email, Phone = e.Phone, PictureUrl = e.PictureUrl, Id = e.Id }).ToListAsync();
 
             else
-                return await dbset.Where(u => EF.Functions.Like(u.Name, newQuery)).Select(e => new PersonDTO() { Name = e.Name, Email = e.Email, Phone = e.Phone , PictureUrl = e.PictureUrl, Id = e.Id }).ToListAsync();
+                return await dbset.Include(a => a.Members).Where(u => EF.Functions.Like(u.Name, newQuery)).Select(e => new PersonDTO() { Name = e.Name, Email = e.Email, Phone = e.Phone , PictureUrl = e.PictureUrl, Id = e.Id }).ToListAsync();
         }
 
     }

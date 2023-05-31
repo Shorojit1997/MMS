@@ -20,8 +20,20 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Account/MessTransactions.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxNZXNzVHJhbnNhY3Rpb25zLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Account/Transactions.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxUcmFuc2FjdGlvbnMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Dot.NET/Mess management System/MMS.Web/Views/Account/_Modals.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxfTW9kYWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Account/_Table_for_account.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxfVGFibGVfZm9yX2FjY291bnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Dot.NET/Mess management System/MMS.Web/Views/Auth/CheckConfirmation.cshtml]
@@ -106,6 +118,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Dot.NET/Mess management System/MMS.Web/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Paypal/Deposit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF5cGFsXERlcG9zaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Paypal/Success.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF5cGFsXFN1Y2Nlc3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Dot.NET/Mess management System/MMS.Web/Views/Profile/ChangePassword.cshtml]

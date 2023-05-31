@@ -176,6 +176,7 @@ namespace MMS.Web.Controllers
          
             var members = await _unitOfWork.MessHaveMembers.GetAllMembersByMessId(Guid.Parse(Id));
             if (!members.Any()) return RedirectToAction("ShowHistory", "Dashboard");
+
             ViewBag.Members= members;
 
             var userId = HttpContext.User.Identity.Name;
@@ -187,7 +188,7 @@ namespace MMS.Web.Controllers
         }
 
 
-        [HttpGet]
+        [HttpPost]
         public async Task<IActionResult> FindMembers(string query,string types)
         {
             if (query == null) return RedirectToAction("ShowHistory", "Dashboard");
