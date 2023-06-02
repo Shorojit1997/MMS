@@ -26,6 +26,10 @@ namespace MMS.DataService.Data
 
         public IDepositRepository Deposits { get; private set; }
 
+        public IExpensesRepository Expenses { get; private set; }
+
+        public IDaysRepository Days { get; private set; }
+
         public UnitOfWork(AppDbContext context, ILoggerFactory loggerFactory)
         {
             _context = context;
@@ -36,6 +40,8 @@ namespace MMS.DataService.Data
             Months= new MonthRepository(context, _logger);
             Accounts = new AccountRepository(context, _logger);
             Deposits=new DepositRepository(context, _logger);
+            Expenses=new ExpensesRepository(context, _logger);
+            Days = new DaysRepository(context, _logger);
         }
 
         public async Task CompleteAsync()

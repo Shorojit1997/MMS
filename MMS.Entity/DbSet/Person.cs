@@ -22,6 +22,6 @@ namespace MMS.Entities.DbSet
         public List<Account> Accounts { get; set; } = new List<Account>();
 
         public List<Deposit> Deposits { get; set; } = new List<Deposit>();
-
+        public List<Days> Days { get; set; } = new List<Days>();
     }
 }

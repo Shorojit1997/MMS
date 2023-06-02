@@ -1,0 +1,11 @@
+﻿
+
+<div class="list-group">
+    <a class="list-group-item list-group-item-action"  href="@Url.Action("MessMembers","Dashboard",new{Id=ViewBag.MessId})" >Expenses</a>
+   
+    <a class="list-group-item list-group-item-action" href="@Url.Action("MyAttendance","Meal",new{MessId=ViewBag.MessId})">My Attendence</a>
+    <a class="list-group-item list-group-item-action" href="@Url.Action("Deposit","Paypal",new{MessId=ViewBag.MessId})">Deposit</a>
+    <a class="list-group-item list-group-item-action" href="@Url.Action("MessTransactions","Account",new{MessId=ViewBag.MessId})">Transactions</a>
+    <a href="#" class="list-group-item list-group-item-action">Payment</a>
+    <a href="#" class="list-group-item list-group-item-action">Settings</a>
+</div>

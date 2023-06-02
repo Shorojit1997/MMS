@@ -1,0 +1,25 @@
+﻿
+@Html.Partial("./Partials/_Headers")
+
+<!-- Main Content -->
+<div class="row mt-4">
+    <div class="col-9">
+        <!-- Sidebar -->
+        <div class="row bg-light">
+            <div class="col-6">
+                <h4>@ViewBag.MonthName month expenses!</h4>
+            </div>
+            <div class="col-6 d-flex justify-content-between">
+                <div></div>
+                <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal13">
+                    Create
+                </button>
+            </div>
+        </div>
+        @Html.Partial("./Partials/_Table_Expenses")
+    </div>
+    <div class="col-3">
+        @Html.Partial("./Partials/_Sidebar")
+    </div>
+</div>
+@Html.Partial("./Partials/_Modal_For_Expenses")

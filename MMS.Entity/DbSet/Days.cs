@@ -1,0 +1,17 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MMS.Entities.DbSet
+{
+    public class Days:BaseEntity
+    {
+        public int Number { get; set; }
+        public int Breakfast { get; set; } = 0;
+        public int Lunch { get; set; }= 0;
+        public int Dinner { get; set; } = 0;
+    }
+}

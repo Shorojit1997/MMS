@@ -45,6 +45,9 @@ namespace MMS.Web.Controllers
                 UpdatedAt = DateTime.Now,
             };
 
+            
+
+
             try
             {
                 await _unitOfWork.Messes.Add(newMess);
@@ -281,6 +284,9 @@ namespace MMS.Web.Controllers
                 UpdatedAt = DateTime.Now,
             };
 
+            //Creating this month days history for this user.
+
+
             await _unitOfWork.Months.Add(newMonth);
             await _unitOfWork.CompleteAsync();
             TempData["Succes"] = "Successfully added";
@@ -318,10 +324,16 @@ namespace MMS.Web.Controllers
                 TempData["Error"] = "Invalid request.";
                 return RedirectToAction("ShowMonthHistory", "Dashboard");
             }
-
+            
             var id = HttpContext.User.Identity.Name;
             var monthDetails = await _unitOfWork.Months.GetById(Guid.Parse(MonthId));
-            var member = await _unitOfWork.MessHaveMembers.GetByMessIdAndPersonId(monthDetails.MessId, Guid.Parse(id));
+            if (monthDetails == null)
+            {
+                TempData["Error"] = "Invalid request.";
+                return RedirectToAction("ShowMonthHistory", "Dashboard");
+            }
+            Guid messId =monthDetails.MessId!=null? monthDetails.MessId:Guid.NewGuid();
+            var member = await _unitOfWork.MessHaveMembers.GetByMessIdAndPersonId(messId, Guid.Parse(id));
 
             if (member == null)
             {

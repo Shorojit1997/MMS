@@ -19,6 +19,10 @@ namespace MMS.DataService.IConfiguration
         IAccountRepository Accounts { get; }
 
         IDepositRepository Deposits { get; }
+
+        IExpensesRepository Expenses { get; }
+
+        IDaysRepository Days { get; }
         Task CompleteAsync();
 
     }
