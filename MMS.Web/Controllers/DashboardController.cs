@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using MMS.DataService.Data;
 using MMS.DataService.IConfiguration;
 using MMS.DataService.Others;
 using MMS.Entities.DbSet;
@@ -73,7 +71,11 @@ namespace MMS.Web.Controllers
 
             ViewBag.Messes= messes;
             ViewBag.Name=person.Name;
-            return View();
+            var mess = new MessRequestDTO()
+            {
+                StartDate = DateTime.Now,
+            };
+            return View(mess);
         }
         [HttpGet]
         public async Task<IActionResult> DeleteMessHistory(string MessId)
@@ -156,7 +158,7 @@ namespace MMS.Web.Controllers
 
             var messDetails = await _unitOfWork.Messes.GetById(mess.Id);
             messDetails.Name = mess.Name??messDetails.Name;
-            messDetails.StartDate = mess.StartDate??messDetails.StartDate;
+            messDetails.StartDate = mess.StartDate!=null? mess.StartDate:messDetails.StartDate;
 
             _unitOfWork.Messes.Update(messDetails);
 
@@ -228,7 +230,7 @@ namespace MMS.Web.Controllers
 
             await _unitOfWork.MessHaveMembers.Add(addIntoMess);
             await _unitOfWork.CompleteAsync();
-
+            TempData["Message"] = "The newly added user i";
             return RedirectToAction("MessMembers","Dashboard",new {Id=MessId});
         }
         [HttpGet]
@@ -274,6 +276,7 @@ namespace MMS.Web.Controllers
             }
 
             var person = await _unitOfWork.Persons.GetById(Guid.Parse(id));
+          
 
             var newMonth = new Month()
             {
@@ -285,9 +288,32 @@ namespace MMS.Web.Controllers
             };
 
             //Creating this month days history for this user.
+            var allMembers = await _unitOfWork.MessHaveMembers.GetAllMembersByMessId(messId);
 
+            //adding all days accoding to the newly created month.
+            List<Days> days = new List<Days>();
 
+            foreach (var singleMember in allMembers)
+            {
+                for (int i = 1; i < 32; i++)
+                {
+                    Days days2 = new Days()
+                    {
+                        Number = i,
+                        Breakfast = 0,
+                        Lunch = 0,
+                        Dinner = 0,
+                        Person_Id =singleMember.Id,
+                        Month_Id = newMonth.Id
+                    };
+
+                    days.Add(days2);
+                }
+            }
+
+          
             await _unitOfWork.Months.Add(newMonth);
+            await _unitOfWork.Days.AddRange(days);
             await _unitOfWork.CompleteAsync();
             TempData["Succes"] = "Successfully added";
 

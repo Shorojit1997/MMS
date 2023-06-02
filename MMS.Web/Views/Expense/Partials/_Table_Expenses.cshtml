@@ -1,28 +1,38 @@
-﻿
+﻿@if (ViewBag.Expenses.Count == 0)
+{
+    <div class="d-flex justify-content-center align-item-center">
+        <h5>Not Included yet</h5>
+    </div>
+   
+}
+else
+{
+    <table class="table table-hover">
 
-<table class="table table-hover">
-
-    <thead>
-        <tr>
-            <th>Title</th>
-            <th>Descriptions</th>
-            <th>Amount</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-
-    <tbody>
-        @foreach (var item in ViewBag.Expenses)
-        {
+        <thead>
             <tr>
-                <td>@item.Title</td>
-                <td>@item.Description</td>
-                <td>@item.Amount</td>
-                <td>
-                    <a class="btn btn-sm btn-danger" href="@Url.Action("Delete","Expense",new{ExpenseId=item.Id})">Delete</a>
-                </td>
+                <th>Title</th>
+                <th>Descriptions</th>
+                <th>Amount</th>
+                <th>Actions</th>
             </tr>
-        }
-    </tbody>
+        </thead>
 
-</table>
+        <tbody>
+            @foreach (var item in ViewBag.Expenses)
+            {
+                <tr>
+                    <td>@item.Title</td>
+                    <td>@item.Description</td>
+                    <td>@item.Amount</td>
+                    <td>
+                        <a class="btn btn-sm btn-danger" href="@Url.Action("Delete","Expense",new{ExpenseId=item.Id})">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+    
+}
+

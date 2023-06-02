@@ -18,6 +18,11 @@ namespace MMS.DataService.Repository
 
         }
 
+        public async Task<bool> AddRange(List<Days> days)
+        {
+            return true;
+        }
+
         public async Task<IEnumerable<Month>> GetMonthsByMessId(Guid MessId)
         {
            return await dbset.Where(e=> e.MessId==MessId).ToListAsync();
