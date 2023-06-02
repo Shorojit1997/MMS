@@ -1,0 +1,75 @@
+﻿@Html.Partial("../Expense/Partials/_Headers")
+
+
+<div class="row mt-4">
+    <div class="col-10">
+        <!-- Sidebar -->
+        <div class="row bg-light">
+            <div class="col-6">
+                <h4>Current Month Meal Status!</h4>
+            </div>
+            <div class="col-6 d-flex justify-content-between">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-2 bg-cadetblue">
+                @* For name only *@
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th style="color: black">Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var user in ViewBag.AllMembers)
+                        {
+                            <tr>
+                                <td style="color: black">@user.Name</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-8">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                @for (int i = 1; i < 32; i++)
+                                {
+                                    <th>@i</th>
+                                }
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var days in ViewBag.AllMembers)
+                            {
+                                <tr>
+                                    @foreach (var day in days.Days)
+                                    {
+                                        <td>
+                                            @if (day.Dinner > 0)
+                                            {
+                                                <p style="font-size: 10px;" class="bg-success m-0 p-1 text-center"><b>On</b></p>
+                                            }
+                                            else
+                                            {
+                                                <p style="font-size: 10px;" class="bg-info m-0 p-1 text-center"><b>Off</b></p>
+                                            }
+                                        </td>
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-2"></div>
+        </div>
+    </div>
+    <div class="col-2">
+        @Html.Partial("../Expense/Partials/_Sidebar")
+    </div>
+</div>

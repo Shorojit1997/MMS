@@ -10,5 +10,6 @@ namespace MMS.DataService.IRepository
     public interface IMonthRepository:IGenericRepository<Month>
     {
         Task<IEnumerable<Month>> GetMonthsByMessId(Guid MessId);
+        Task<bool> AddRange(List<Days> days);
     }
 }

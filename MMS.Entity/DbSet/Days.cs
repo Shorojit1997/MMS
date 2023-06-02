@@ -9,6 +9,8 @@ namespace MMS.Entities.DbSet
 {
     public class Days:BaseEntity
     {
+        public Guid Month_Id { get; set; }
+        public Guid Person_Id { get; set; } 
         public int Number { get; set; }
         public int Breakfast { get; set; } = 0;
         public int Lunch { get; set; }= 0;

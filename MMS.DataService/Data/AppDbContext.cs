@@ -24,5 +24,6 @@ namespace MMS.DataService.Data
         public DbSet<Expense> Expenses { get; set; }
 
         public DbSet<Days> Days { get; set; }
+
     }
 }

@@ -37,8 +37,12 @@ namespace MMS.Web.Controllers
                 };
 
                 var expenseList= await _unitOfWork.Expenses.GetExpensesByMonthId(month.Id);
+                var PersonId = HttpContext.User.Identity.Name;
 
                 ViewBag.Expenses = expenseList;
+                ViewBag.MessId = MessId;
+                ViewBag.MonthId = MonthId;
+                ViewBag.PersonId = PersonId;
 
                 return View(expense);
 

@@ -144,8 +144,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Meal/AllMembersAttendance.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVhbFxBbGxNZW1iZXJzQXR0ZW5kYW5jZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Dot.NET/Mess management System/MMS.Web/Views/Meal/MyAttendance.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVhbFxNeUF0dGVuZGFuY2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Meal/Partials/_Headers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVhbFxQYXJ0aWFsc1xfSGVhZGVycy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Meal/Partials/_Sidebar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVhbFxQYXJ0aWFsc1xfU2lkZWJhci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Dot.NET/Mess management System/MMS.Web/Views/Paypal/Deposit.cshtml]
