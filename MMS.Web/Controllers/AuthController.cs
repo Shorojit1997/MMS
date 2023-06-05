@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MMS.DataService.IConfiguration;
 using MMS.Authentication.Models.DTO.Incomming;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
@@ -18,6 +17,8 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
+using MMS.DataService.IRepository;
+using MMS.DataService.Service;
 
 namespace MMS.Web.Controllers
 {
@@ -35,10 +36,11 @@ namespace MMS.Web.Controllers
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signManager,
             IOptionsMonitor<JwtConfig> optionsMonitor,
-            IEmailService emailService
+            IEmailService emailService,
+            IUnitOfService unitOfService
 
 
-            ) : base(unitOfWork)
+            ) : base(unitOfWork, unitOfService)
         {
             _userManager = userManager;
             _signInManager = signManager;

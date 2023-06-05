@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Identity.Client;
 using MMS.DataService.Data;
-using MMS.DataService.IConfiguration;
 using MMS.DataService.IRepository;
 using MMS.Entities.DbSet;
 using MMS.Entities.Dtos.Incomming;

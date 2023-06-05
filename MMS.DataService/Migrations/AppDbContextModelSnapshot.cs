@@ -70,6 +70,9 @@ namespace MMS.DataService.Migrations
                     b.Property<int>("Dinner")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsEnd")
+                        .HasColumnType("bit");
+
                     b.Property<int>("Lunch")
                         .HasColumnType("int");
 

@@ -1,8 +1,9 @@
 ﻿using Azure;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using MMS.DataService.IConfiguration;
+using MMS.DataService.IRepository;
 using MMS.DataService.Paypal;
+using MMS.DataService.Service;
 using MMS.Entities.DbSet;
 using MMS.Entities.Dtos.Incomming;
 using System.Runtime.CompilerServices;
@@ -14,7 +15,7 @@ namespace MMS.Web.Controllers
     {
         private readonly PaypalClient _paypalClient;
 
-        public PaypalController(IUnitOfWork unitOfWork) : base(unitOfWork) 
+        public PaypalController(IUnitOfWork unitOfWork, IUnitOfService unitOfService) : base(unitOfWork, unitOfService) 
         {
             _paypalClient = new PaypalClient();
         }

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Nn1RlKLr/lJJwTzKM7oXaP6i5tLSQTw0mUhm3RU5/sM=",
+  "Hash": "82u6BIi2oHDPLhft/mepC3dk646K0YHYWMHYdUqF8jk=",
   "Source": "MMS.Web",
   "BasePath": "_content/MMS.Web",
   "Mode": "Default",
@@ -185,6 +185,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\6382123875721633531me.jpg"
+    },
+    {
+      "Identity": "C:\\Dot.NET\\Mess management System\\MMS.Web\\wwwroot\\images\\6382133359330853301me.jpg",
+      "SourceId": "MMS.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Dot.NET\\Mess management System\\MMS.Web\\wwwroot\\",
+      "BasePath": "_content/MMS.Web",
+      "RelativePath": "images/6382133359330853301me.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\6382133359330853301me.jpg"
+    },
+    {
+      "Identity": "C:\\Dot.NET\\Mess management System\\MMS.Web\\wwwroot\\images\\638215826877321007Rabindraanath.jpg",
+      "SourceId": "MMS.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Dot.NET\\Mess management System\\MMS.Web\\wwwroot\\",
+      "BasePath": "_content/MMS.Web",
+      "RelativePath": "images/638215826877321007Rabindraanath.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\638215826877321007Rabindraanath.jpg"
     },
     {
       "Identity": "C:\\Dot.NET\\Mess management System\\MMS.Web\\wwwroot\\images\\Default.jpg",

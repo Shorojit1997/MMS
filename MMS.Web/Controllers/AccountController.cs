@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using MMS.DataService.IConfiguration;
+using MMS.DataService.IRepository;
 using MMS.DataService.Others;
+using MMS.DataService.Service;
 using MMS.Entities.DbSet;
 using MMS.Entities.Dtos.Incomming;
 
@@ -10,7 +11,7 @@ namespace MMS.Web.Controllers
     [Authorize]
     public class AccountController : BaseController
     {
-        public AccountController(IUnitOfWork unitOfWork) : base(unitOfWork)
+        public AccountController(IUnitOfWork unitOfWork,IUnitOfService unitOfService) : base(unitOfWork, unitOfService)
         {
         }
 

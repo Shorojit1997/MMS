@@ -1,21 +1,20 @@
 ﻿using Microsoft.Extensions.Logging;
-using MMS.DataService.IConfiguration;
+using MMS.DataService.Data;
 using MMS.DataService.IRepository;
-using MMS.DataService.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MMS.DataService.Data
+namespace MMS.DataService.Repository
 {
-    public class UnitOfWork: IDisposable,IUnitOfWork
+    public class UnitOfWork : IDisposable, IUnitOfWork
     {
         private readonly AppDbContext _context;
         private readonly ILogger _logger;
 
-        public IPersonRepository Persons { get;private set; }
+        public IPersonRepository Persons { get; private set; }
 
         public IMessRepository Messes { get; private set; }
 
@@ -36,11 +35,11 @@ namespace MMS.DataService.Data
             _logger = loggerFactory.CreateLogger<UnitOfWork>();
             Persons = new PersonRepository(context, _logger);
             Messes = new MessRepository(context, _logger);
-            MessHaveMembers= new MessMemberRepository(context, _logger);
-            Months= new MonthRepository(context, _logger);
+            MessHaveMembers = new MessMemberRepository(context, _logger);
+            Months = new MonthRepository(context, _logger);
             Accounts = new AccountRepository(context, _logger);
-            Deposits=new DepositRepository(context, _logger);
-            Expenses=new ExpensesRepository(context, _logger);
+            Deposits = new DepositRepository(context, _logger);
+            Expenses = new ExpensesRepository(context, _logger);
             Days = new DaysRepository(context, _logger);
         }
 

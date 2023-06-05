@@ -23,8 +23,9 @@
                                 <h5><i><b>Current Meal Timeline</b></i></h5>
                             </div>
                             <div class="col-4">
-                                <p style="font-size: 10px;" class="bg-success m-0 p-2"><b>Running</b></p>
+                                <p style="font-size: 10px;" class="bg-success text-white m-0 p-2"><b>Running</b></p>
                                 <p style="font-size: 10px;" class="bg-info m-0 p-2"><b>Stop</b></p>
+                                <p style="font-size: 10px;" class="bg-dark text-white m-0 p-2"><b>Closed</b></p>
                             </div>
                         </div>
                     </div>
@@ -36,11 +37,27 @@
                             {
                                 @if (item.Dinner > 0)
                                 {
-                                    <button type="button" onclick="changeStatus('@item.Id', this)" class="btn btn-sm btn-success m-1 col-2">@item.Number</button>
+                                    if (item.IsEnd == true)
+                                    {
+                                        <button type="button" disabled class="btn btn-sm text-white btn-success m-1 col-2">@item.Number</button>
+                                    }
+                                    else
+                                    {
+                                        <button type="button" onclick="changeStatus('@item.Id', this)" class="btn btn-sm text-white btn-success m-1 col-2">@item.Number</button>
+                                    }
+                                   
                                 }
                                 else
                                 {
-                                    <button type="button" onclick="changeStatus('@item.Id', this)" class="btn btn-sm btn-info m-1 col-2">@item.Number</button>
+
+                                    if (item.IsEnd == true)
+                                    {
+                                        <button type="button" disabled class="btn btn-sm btn-info m-1 col-2">@item.Number</button>
+                                    }
+                                    else
+                                    {
+                                        <button type="button" onclick="changeStatus('@item.Id', this)" class="btn btn-sm btn-info m-1 col-2">@item.Number</button>
+                                    }
                                 }
                             }
                         </div>
