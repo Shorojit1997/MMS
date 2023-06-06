@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MMS.Authentication\MMS.Authentication.csproj" />
     <ProjectReference Include="..\MMS.Entity\MMS.Entities.csproj" />
   </ItemGroup>
 

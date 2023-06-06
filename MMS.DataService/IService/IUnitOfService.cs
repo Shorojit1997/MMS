@@ -13,6 +13,8 @@ namespace MMS.DataService.Service
         IProfileService ProfileService { get; }
         IMealService MealService { get; }
 
-       IDashboardServices DashboardService { get; }
+        IDashboardServices DashboardService { get; }
+
+        IAuthService AuthService { get; }
     }
 }

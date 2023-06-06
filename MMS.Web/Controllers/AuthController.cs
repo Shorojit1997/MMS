@@ -56,51 +56,25 @@ namespace MMS.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginRequestDTO person)
         {
-            if (ModelState.IsValid)
+            try
             {
-                var userExist = await _userManager.FindByEmailAsync(person.Email);
-                if (userExist == null)
+                var claimsIdentity = await _unitOfService.AuthService.LoginPost(person);
+                var authProperties = new AuthenticationProperties
                 {
-                    ModelState.AddModelError("Email", "Please provide a valid email");
-                    return View();
-                }
-                var isSignin = await _signInManager.PasswordSignInAsync(userExist, person.Password, false, false);
-                if (isSignin.Succeeded)
-                {
-                    var claims = new List<Claim>
-                    {
-                    
-                       new Claim(ClaimTypes.Name, userExist.Id),
-                       new Claim(ClaimTypes.Email, userExist.Email)
-                     };
+                    IsPersistent = false
+                };
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+                    new ClaimsPrincipal(claimsIdentity), authProperties);
 
-                    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                    var authProperties = new AuthenticationProperties
-                    {
-                        IsPersistent = false
-                    };
-
-                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
-                        new ClaimsPrincipal(claimsIdentity), authProperties);
-
-                    return RedirectToAction("ShowHistory", "Dashboard");
-
-
-                }
-                else if (isSignin.IsLockedOut)
-                {
-                    ModelState.AddModelError(string.Empty, "Your account is locked. Please contact support.");
-                }
-                else
-                {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt");
-                }
-
-                return View();
+                return RedirectToAction("ShowHistory", "Dashboard");
 
             }
+            catch(Exception e)
+            {
+                ModelState.AddModelError("Error",e.Message);
+                return View();
+            }
 
-            return View();
         }
 
 
@@ -113,130 +87,63 @@ namespace MMS.Web.Controllers
         public async Task<IActionResult> Registration(RegistrationRequestDTO person)
         {
 
-            if (ModelState.IsValid)
+            try
             {
-
-                var userExist = await _userManager.FindByEmailAsync(person.Email);
-                //checking the email is already use or not
-                if (userExist != null)
-                {
-                    ModelState.AddModelError("Email", "Email already in use another person");
-                    return View();
-                }
-
-    
-                //Add new user
-                var newUser = new IdentityUser()
-                {
-                    Email = person.Email,
-                    UserName = person.Email,
-                    EmailConfirmed = true
-                };
-
-                //Adding user to the table
-                var isCreated = await _userManager.CreateAsync(newUser, person.Password);
-                // If failed to adding to the table
-                if (!isCreated.Succeeded)
-                {
-                    var error = isCreated.Errors.Select(x => x.Description).ToList();
-                    ModelState.AddModelError("Error", error[0]);
-                    return View();
-
-                }
-                //Save the user Details in User models
-                var _person = new Person();
-                _person.Id = new Guid(newUser.Id);
-                _person.Name = person.Name;
-                _person.Email = person.Email;
-                _person.Phone = person.Phone;
-
-                _person.UpdatedAt = DateTime.Now;
-
-                await _unitOfWork.Persons.Add(_person);
-                await _unitOfWork.CompleteAsync();
-
-                var claims = new List<Claim>
-                {
-                    new Claim(ClaimTypes.Name,  newUser.Id),
-                    new Claim(ClaimTypes.Email, newUser.Email)
-                 };
+                if (!ModelState.IsValid)
+                    return View(person);
+                
 
                 var authProperties = new AuthenticationProperties
                 {
                     IsPersistent = false
                 };
+                var claimsIdentity = await _unitOfService.AuthService.RegistrationPost(person);
 
-                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                     new ClaimsPrincipal(claimsIdentity), authProperties);
 
-                var user = new IdentityUser()
-                 {
-                    Email=person.Email,
-                    SecurityStamp=Guid.NewGuid().ToString(),
-                    UserName= person.Name,
-                };
-
-                var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                var confirmationLink = Url.Action(nameof(ConfirmMail), "Auth", new {Token=token,Email=_person.Email },Request.Scheme);
-                var message = new Message(new string[] { user.Email },"Confirmation email Link",confirmationLink);
-
-                
-               // var result = await _userManager.ConfirmEmailAsync(user, token);
-                //commenting because of bugs
-                //await _emailService.SendMail(message);
-
-
-                //return RedirectToAction("Details", "Profile");
                 return RedirectToAction("ShowHistory", "Dashboard");
-
-
             }
-            return View();
+            catch(Exception e)
+            {
+                ModelState.AddModelError("Error",e.Message);
+                return View();
+            }
+
         }
 
         public async Task<IActionResult> ConfirmMail(string Token,string Email)
         {
-            var user = await _userManager.FindByEmailAsync(Email);
-            if(user != null)
+            try
             {
-                var result = await _userManager.ConfirmEmailAsync(user, Token);
-                if(result.Succeeded)
+                var claimsIdentity = await _unitOfService.AuthService.ConfirmMail(Token, Email);
+                var authProperties = new AuthenticationProperties
                 {
+                    IsPersistent = false
+                };
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+                    new ClaimsPrincipal(claimsIdentity), authProperties);
 
-                    //Update email confirmations
-                    user.EmailConfirmed = true;
-                    await _userManager.UpdateAsync(user);
-
-
-                    var claims = new[]
-                    {
-                     new Claim(ClaimTypes.Name, user.Email),
-                     new Claim(ClaimTypes.Email, user.Email),
-                    };
-
-                    var authProperties = new AuthenticationProperties
-                    {
-                        IsPersistent = false
-                    };
-                    //set cookie for the client side
-                    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
-                        new ClaimsPrincipal(claimsIdentity), authProperties);
-
-
-                    return RedirectToAction("Details", "Profile");
-                }
-
+                return RedirectToAction("ShowHistory", "Dashboard");
             }
-            return RedirectToAction("Login", "Auth");
+            catch(Exception e)
+            {
+                ModelState.AddModelError("Error",e.Message);
+                return RedirectToAction("Registration", "Auth");
+            }
+           
+           
         }
+
 
 
         public async Task<IActionResult> ForgotPassword()
         {
             return View();
         }
+
+
 
         [HttpPost]
         public async Task<IActionResult> ForgotPassword(string email)
@@ -256,6 +163,8 @@ namespace MMS.Web.Controllers
         }
 
 
+
+
         public async Task<IActionResult> ResetPassword(string Token,string Email)
         {
             var users = new ResetPasswordDTO()
@@ -267,25 +176,27 @@ namespace MMS.Web.Controllers
             return View(users);
         }
 
+
+
+
         [HttpPost]
         public async Task<IActionResult> ResetPassword(ResetPasswordDTO Details)
         {
-            if(!ModelState.IsValid)
+            try
             {
-                return View();
-            }
-            var user = await _userManager.FindByEmailAsync(Details.Email);
-            if (user != null)
-            {
-                
-               var result = await _userManager.ResetPasswordAsync(user, Details.Token,Details.Password);
-                if (result.Succeeded)
+                if (!ModelState.IsValid)
                 {
-                    return RedirectToAction("Details", "Profile");
+                    return View();
                 }
+                await _unitOfService.AuthService.ResetPassword(Details);
+                return RedirectToAction("Details", "Profile");
 
             }
-            return RedirectToAction("Login", "Auth");
+            catch (Exception ex)
+            {
+                TempData["Error"]=ex.Message;
+                return RedirectToAction("Login", "Auth");
+            }
         }
         public IActionResult SendMail()
         {

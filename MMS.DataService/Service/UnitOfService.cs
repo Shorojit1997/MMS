@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using MMS.Authentication.IService;
 using MMS.DataService.Data;
 using MMS.DataService.IRepository;
 using MMS.DataService.IService;
@@ -22,18 +23,25 @@ namespace MMS.DataService.Service
 
         public IDashboardServices DashboardService { get; private set; }
 
+        public IAuthService AuthService { get; private set; }
 
         public UnitOfService(
             IUnitOfWork unitOfWork,
             UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signManager
+            SignInManager<IdentityUser> signManager,
+            IEmailService emailService
             )
         {
             _unitOfWork = unitOfWork;
             ProfileService = new ProfileService(unitOfWork,userManager,signManager);
             MealService = new MealService(unitOfWork);
             DashboardService=new DashboardService(unitOfWork);
+            AuthService = new AuthService(unitOfWork,userManager, emailService,signManager);
         }
+
+
+
+
     }
 
 }

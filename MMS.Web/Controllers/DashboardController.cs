@@ -5,6 +5,7 @@ using MMS.DataService.Others;
 using MMS.DataService.Service;
 using MMS.Entities.DbSet;
 using MMS.Entities.Dtos.Incomming;
+using Org.BouncyCastle.Ocsp;
 
 
 namespace MMS.Web.Controllers
@@ -78,25 +79,9 @@ namespace MMS.Web.Controllers
         {
             try
             {
-                if (string.IsNullOrEmpty(MessId) || !ValidityChecker.IsValidGuid(MessId))
-                    throw new Exception("Invalid request");
-                
-
-                var Id = HttpContext.User.Identity.Name;
-                var member = await _unitOfWork.MessHaveMembers
-                    .GetByMessIdAndPersonId(Guid.Parse(MessId), Guid.Parse(Id));
-
-                if (member == null)
-                    throw new Exception( "Somethings Happened wrong!");
-                if (!member.IsManager)
-                    throw new Exception("Sorry you have't any permission!");
-              
-
-                await _unitOfWork.Messes.DeleteMessByMessId(Guid.Parse(MessId));
-                await _unitOfWork.CompleteAsync();
-
+                var id = HttpContext.User.Identity.Name;
+                await _unitOfService.DashboardService.DeleteMessHistory(MessId, id);
                 TempData["Success"] = "Successfully deleted";
-
                 return RedirectToAction("ShowHistory", "Dashboard");
             }
             catch(Exception e)
@@ -153,6 +138,7 @@ namespace MMS.Web.Controllers
 
                 var id = HttpContext.User.Identity.Name;
                 var details = await _unitOfWork.MessHaveMembers.GetByMessIdAndPersonId(mess.Id, Guid.Parse(id));
+                
 
                 if (details == null || !details.IsManager)
                     throw new Exception("Sorry! You have no edit permission");
@@ -183,17 +169,18 @@ namespace MMS.Web.Controllers
                 if (Id == null || !ValidityChecker.IsValidGuid(Id))
                     throw new Exception("Invalid Route");
 
-                ViewBag.MessId = Id;
-
                 var members = await _unitOfWork.MessHaveMembers.GetAllMembersByMessId(Guid.Parse(Id));
                 if (members==null) throw new Exception("Invalid Route");
 
-                ViewBag.Members = members;
+                
 
                 var userId = HttpContext.User.Identity.Name;
                 var isMember = members.FirstOrDefault(e => e.Id == Guid.Parse(userId));
 
                 if (isMember == null) throw new Exception("Invalid Route");
+
+                ViewBag.MessId = Id;
+                ViewBag.Members = members;
 
                 return View();
             }
@@ -222,12 +209,6 @@ namespace MMS.Web.Controllers
 
 
 
-
-
-
-
-
-
         [HttpGet]
 
         public async Task<IActionResult> AddIntoMess(string MessId, string UserId,string type)
@@ -236,13 +217,18 @@ namespace MMS.Web.Controllers
             {
                 if (MessId == null || UserId == null)
                     throw new Exception( "Something happend wrong. Please try again");
+
                 var curUserId= HttpContext.User.Identity?.Name;
+                //adding the current user into mess
                 var isAdded= await _unitOfService.DashboardService.AddIntoMess(MessId, UserId, type,curUserId);
+
+                //checking is it possible to add or not
                 if (isAdded)
                 {
                     TempData["Message"] = "The newly added user i";
                     return RedirectToAction("MessMembers", "Dashboard", new { Id = MessId });
                 }
+
                 throw new Exception("Internal server error");
             }
             catch(Exception e)
@@ -256,34 +242,30 @@ namespace MMS.Web.Controllers
 
 
 
-
-
-
-
-
         [HttpGet]
         public async Task<IActionResult> RemoveFromMess(string MessId, string UserId)
         {
             try
             {
+                //Null value checking or wrong guid id checking 
+                if (MessId == null || UserId == null || !ValidityChecker.IsValidGuid(MessId) || !ValidityChecker.IsValidGuid(UserId))
+                    throw new Exception( "Something happend wrong. Please try again");
 
+                //finding the current userId from the HttpContext
+                var currentUserId = HttpContext.User.Identity.Name;
+
+                //adding into database
+                await _unitOfWork.MessHaveMembers.RemoveByMessIdAndPersonId(Guid.Parse(MessId), Guid.Parse(UserId), Guid.Parse(currentUserId));
+                await _unitOfWork.CompleteAsync();
+
+                return RedirectToAction("MessMembers", "Dashboard", new { Id = MessId });
             }
             catch(Exception e)
             {
                 TempData["Error"]=e.Message;
+                return RedirectToAction("Index", "Error");
             }
-            if (MessId == null || UserId == null || !ValidityChecker.IsValidGuid(MessId) || !ValidityChecker.IsValidGuid(UserId))
-            {
-                TempData["Error"] = "Something happend wrong. Please try again";
-                return RedirectToAction("ShowHistory", "Dashboard");
-            }
-
-            var currentUserId = HttpContext.User.Identity.Name;
-
-            await _unitOfWork.MessHaveMembers.RemoveByMessIdAndPersonId(Guid.Parse(MessId),Guid.Parse(UserId),Guid.Parse(currentUserId));
-            await _unitOfWork.CompleteAsync();
-
-            return RedirectToAction("MessMembers", "Dashboard", new { Id = MessId });
+           
         }
 
 
@@ -295,70 +277,23 @@ namespace MMS.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateNewMonth(MonthDTO monthDetails)
         {
-            if(!ModelState.IsValid)
+            try
             {
-                return View();
-            }
-            var id = HttpContext.User.Identity.Name;
-            var messId= monthDetails.Id;
-
-            var member= await _unitOfWork.MessHaveMembers.GetByMessIdAndPersonId(messId,Guid.Parse(id));
-
-            if (member == null)
-            {
-                TempData["Error"] = "Something happend error! please try again";
-                return RedirectToAction("ShowMonthHistory", "Dashboard", new { MessId = messId });
-            }
-
-            if (!member.IsManager)
-            {
-                TempData["Error"] = "Sorry! Only mess manager can create the month history";
-                return RedirectToAction("ShowMonthHistory", "Dashboard", new { MessId = messId });
-            }
-
-            var person = await _unitOfWork.Persons.GetById(Guid.Parse(id));
-          
-
-            var newMonth = new Month()
-            {
-                Name = monthDetails.Name,
-                StartDate = monthDetails.StartDate,
-                AddedBy= person.Name,
-                MessId= messId,
-                UpdatedAt = DateTime.Now,
-            };
-
-            //Creating this month days history for this user.
-            var allMembers = await _unitOfWork.MessHaveMembers.GetAllMembersByMessId(messId);
-
-            //adding all days accoding to the newly created month.
-            List<Days> days = new List<Days>();
-
-            foreach (var singleMember in allMembers)
-            {
-                for (int i = 1; i < 32; i++)
+                if (!ModelState.IsValid)
                 {
-                    Days days2 = new Days()
-                    {
-                        Number = i,
-                        Breakfast = 0,
-                        Lunch = 0,
-                        Dinner = 0,
-                        Person_Id =singleMember.Id,
-                        Month_Id = newMonth.Id
-                    };
-
-                    days.Add(days2);
+                    return View();
                 }
+                var id = HttpContext.User.Identity.Name;
+                //will create new month
+                await _unitOfService.DashboardService.CreateNewMonth(monthDetails, id);
+                TempData["Succes"] = "Successfully added";
+                return RedirectToAction("ShowMonthHistory", "Dashboard", new { MessId = monthDetails.Id });
             }
-
-          
-            await _unitOfWork.Months.Add(newMonth);
-            await _unitOfWork.Days.AddRange(days);
-            await _unitOfWork.CompleteAsync();
-            TempData["Succes"] = "Successfully added";
-
-            return RedirectToAction("ShowMonthHistory", "Dashboard", new { MessId = messId });
+            catch(Exception e)
+            {
+                TempData["Error"] = e.Message;
+                return RedirectToAction("Index", "Error");
+            }
         
 
         }
@@ -368,30 +303,33 @@ namespace MMS.Web.Controllers
 
 
 
-
-
-
-
-
         [HttpGet]
         public async Task<IActionResult> ShowMonthHistory(string MessId)
         {
-            if (string.IsNullOrEmpty(MessId) || !ValidityChecker.IsValidGuid(MessId))
+            try
             {
-                TempData["Error"] = string.Empty;
-                return RedirectToAction("ShowHistory","Dashboard");
-            }
-           
-            var months = await _unitOfWork.Months.GetMonthsByMessId(Guid.Parse(MessId));
+                if (string.IsNullOrEmpty(MessId) || !ValidityChecker.IsValidGuid(MessId))
+                    throw new Exception("Invalid route");
+              
+                //getting all of  month by messId
+                var months = await _unitOfWork.Months.GetMonthsByMessId(Guid.Parse(MessId));
 
-            var newMonth = new MonthDTO()
+                //Created new view-Model for the filling the input from
+                var newMonth = new MonthDTO()
+                {
+                    Id = Guid.Parse(MessId),
+                    StartDate = DateTime.Now,
+                };
+                ViewBag.MessId = MessId;
+                ViewBag.Months = months;
+
+                return View(newMonth);
+            }
+            catch (Exception e)
             {
-                Id = Guid.Parse(MessId),
-                StartDate = DateTime.Now,
-            };
-            ViewBag.MessId = MessId;
-            ViewBag.Months = months;
-            return View(newMonth);
+                TempData["Error"]=e.Message;
+                return RedirectToAction("Index", "Error");  
+            }
         }
 
 
@@ -400,67 +338,35 @@ namespace MMS.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> DeleteMonthHistory(string MonthId)
         {
-            if (string.IsNullOrEmpty(MonthId) || !ValidityChecker.IsValidGuid(MonthId))
+            try
             {
-                TempData["Error"] = "Invalid request.";
-                return RedirectToAction("ShowMonthHistory", "Dashboard");
+                var id = HttpContext.User.Identity.Name;
+                var messId = await _unitOfService.DashboardService.DeleteMonthHistory(MonthId, id);
+
+                TempData["Success"] = "Successfully deleted";
+                return RedirectToAction("ShowMonthHistory", "Dashboard", new { MessId = messId });
+
             }
-            
-            var id = HttpContext.User.Identity.Name;
-            var monthDetails = await _unitOfWork.Months.GetById(Guid.Parse(MonthId));
-            if (monthDetails == null)
-            {
-                TempData["Error"] = "Invalid request.";
-                return RedirectToAction("ShowMonthHistory", "Dashboard");
+            catch(Exception ex) {
+                TempData["Error"] =ex.Message;
+                return RedirectToAction("Index", "Error");
             }
-            Guid messId =monthDetails.MessId!=null? monthDetails.MessId:Guid.NewGuid();
-            var member = await _unitOfWork.MessHaveMembers.GetByMessIdAndPersonId(messId, Guid.Parse(id));
-
-            if (member == null)
-            {
-                TempData["Error"] = "Somethings Happend wrong!";
-                return RedirectToAction("ShowMonthHistory", "Dashboard");
-            }
-
-            if (!member.IsManager)
-            {
-                TempData["Error"] = "Sorry you have't any permission!";
-                return RedirectToAction("ShowMonthHistory", "Dashboard");
-            }
-
-            await _unitOfWork.Months.Delete(monthDetails);
-            await _unitOfWork.CompleteAsync();
-
-            TempData["Success"] = "Successfully deleted";
-
-            return RedirectToAction("ShowMonthHistory", "Dashboard",new { MessId=monthDetails.MessId});
         }
 
 
         [HttpGet]
         public async Task<IActionResult> EditMonthHistory(string MessId,string MonthId)
         {
-            if (string.IsNullOrEmpty(MonthId) || string.IsNullOrEmpty(MessId) || !ValidityChecker.IsValidGuid(MonthId) || !ValidityChecker.IsValidGuid(MessId))
+            try
             {
-                TempData["Error"] = "Something happend error";
-                return RedirectToAction("ShowMonthHistory", "Dashboard",new {MessId=MessId});
+                var requestDto = await _unitOfService.DashboardService.EditMonthHistory(MessId,MonthId);
+                return View(requestDto);
             }
-
-            var month = await _unitOfWork.Months.GetById(Guid.Parse(MonthId));
-            if (month == null)
+            catch(Exception ex )
             {
-                TempData["Error"] = "Invalid Request";
-                return RedirectToAction("ShowMonthHistory", "Dashboard", new { MessId = MessId });
+                TempData["Error"] =ex.Message;
+                return RedirectToAction("Index", "Error");
             }
-
-            var requestDto = new MonthDTO()
-            {
-                Id = month.Id,
-                MessId=Guid.Parse(MessId),
-                Name = month.Name,
-                StartDate = month.StartDate,
-            };
-            return View(requestDto);
         }
 
 
@@ -468,45 +374,26 @@ namespace MMS.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> EditMonthHistory(MonthDTO month)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                TempData["Error"] = "Please provide valid informations";
-                return RedirectToAction("ShowMonthHistory", "Dashboard", new {MessId=month.MessId});
-            }
+                if (!ModelState.IsValid)
+                {
+                    TempData["Error"] = "Please provide valid informations";
+                    return View(month);
+                }
 
-            if( !ValidityChecker.IsValidGuid(month.Id) || !ValidityChecker.IsValidGuid(Convert.ToString(month.MessId)))
-            {
+                var id = HttpContext.User.Identity.Name;
+                await _unitOfService.DashboardService.EditMonthHistoryForPostController(month, id);
+                TempData["Success"] = "Successfully Updated";
+
+
                 return RedirectToAction("ShowMonthHistory", "Dashboard", new { MessId = month.MessId });
             }
-
-            var id = HttpContext.User.Identity.Name;
-            var messId=month.MessId?? Guid.NewGuid();
-            var details = await _unitOfWork.MessHaveMembers.GetByMessIdAndPersonId(messId, Guid.Parse(id));
-
-            if (details == null || !details.IsManager)
+            catch(Exception ex)
             {
-                TempData["Error"] = "Sorry! You have not edit permission";
-                return RedirectToAction("ShowMonthHistory", "Dashboard", new { MessId = month.MessId });
-
+                TempData["Error"]=ex.Message;
+                return RedirectToAction("Index", "Error");
             }
-
-            var existingMonth = await _unitOfWork.Months.GetById(month.Id);
-
-            if (existingMonth == null)
-            {
-                TempData["Error"] = "Sorry! You have provided wrong informations";
-                return RedirectToAction("ShowMonthHistory", "Dashboard", new { MessId = month.MessId });
-            }
-
-            existingMonth.Name = month.Name ?? existingMonth.Name;
-            existingMonth.StartDate = month.StartDate!=null ? month.StartDate: existingMonth.StartDate;
-
-            _unitOfWork.Months.Update(existingMonth);
-
-            await _unitOfWork.CompleteAsync();
-
-            TempData["Success"] = "Successfully Updated";
-            return RedirectToAction("ShowMonthHistory", "Dashboard",new {MessId=month.MessId});
         }
 
 

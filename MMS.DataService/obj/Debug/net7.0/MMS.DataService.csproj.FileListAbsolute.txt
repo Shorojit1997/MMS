@@ -30,3 +30,5 @@ C:\Dot.NET\Mess management System\MMS.DataService\obj\Debug\net7.0\MMS.DataServi
 C:\Dot.NET\Mess management System\MMS.DataService\obj\Debug\net7.0\ref\MMS.DataService.dll
 C:\Dot.NET\Mess management System\MMS.DataService\bin\Debug\net7.0\MMS.DataService.runtimeconfig.json
 C:\Dot.NET\Mess management System\MMS.DataService\obj\Debug\net7.0\MMS.DataService.genruntimeconfig.cache
+C:\Dot.NET\Mess management System\MMS.DataService\bin\Debug\net7.0\MMS.Authentication.dll
+C:\Dot.NET\Mess management System\MMS.DataService\bin\Debug\net7.0\MMS.Authentication.pdb
