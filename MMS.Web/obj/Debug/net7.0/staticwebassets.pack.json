@@ -13,40 +13,12 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
-      "Id": "C:\\Dot.NET\\Mess management System\\MMS.Web\\wwwroot\\images\\638211410549175589Me.jpg",
-      "PackagePath": "staticwebassets\\images\\638211410549175589Me.jpg"
-    },
-    {
-      "Id": "C:\\Dot.NET\\Mess management System\\MMS.Web\\wwwroot\\images\\6382114198350848111me.jpg",
-      "PackagePath": "staticwebassets\\images\\6382114198350848111me.jpg"
-    },
-    {
-      "Id": "C:\\Dot.NET\\Mess management System\\MMS.Web\\wwwroot\\images\\6382115316442229481me.jpg",
-      "PackagePath": "staticwebassets\\images\\6382115316442229481me.jpg"
-    },
-    {
-      "Id": "C:\\Dot.NET\\Mess management System\\MMS.Web\\wwwroot\\images\\638212262848240283Rabindraanath.jpg",
-      "PackagePath": "staticwebassets\\images\\638212262848240283Rabindraanath.jpg"
-    },
-    {
-      "Id": "C:\\Dot.NET\\Mess management System\\MMS.Web\\wwwroot\\images\\638212263052954425Rabindraanath.jpg",
-      "PackagePath": "staticwebassets\\images\\638212263052954425Rabindraanath.jpg"
-    },
-    {
-      "Id": "C:\\Dot.NET\\Mess management System\\MMS.Web\\wwwroot\\images\\6382123875721633531me.jpg",
-      "PackagePath": "staticwebassets\\images\\6382123875721633531me.jpg"
-    },
-    {
-      "Id": "C:\\Dot.NET\\Mess management System\\MMS.Web\\wwwroot\\images\\6382133359330853301me.jpg",
-      "PackagePath": "staticwebassets\\images\\6382133359330853301me.jpg"
-    },
-    {
-      "Id": "C:\\Dot.NET\\Mess management System\\MMS.Web\\wwwroot\\images\\638215826877321007Rabindraanath.jpg",
-      "PackagePath": "staticwebassets\\images\\638215826877321007Rabindraanath.jpg"
-    },
-    {
       "Id": "C:\\Dot.NET\\Mess management System\\MMS.Web\\wwwroot\\images\\Default.jpg",
       "PackagePath": "staticwebassets\\images\\Default.jpg"
+    },
+    {
+      "Id": "C:\\Dot.NET\\Mess management System\\MMS.Web\\wwwroot\\images\\myImage6382182248879129011me.jpg",
+      "PackagePath": "staticwebassets\\images\\myImage6382182248879129011me.jpg"
     },
     {
       "Id": "C:\\Dot.NET\\Mess management System\\MMS.Web\\wwwroot\\js\\DashboardController.js",

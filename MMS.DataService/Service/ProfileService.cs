@@ -11,6 +11,9 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
 using PayPal.Core;
 using MMS.Authentication.Models.DTO.Incomming;
+using Microsoft.AspNetCore.Hosting.Server;
+using System.IO;
+using Grpc.Core;
 
 namespace MMS.DataService.Service
 {
@@ -69,42 +72,43 @@ namespace MMS.DataService.Service
 
         public async Task<bool> UpdateProfileService(ProfileUpdateRequestDTO person, IFormFile ImageFile, string Id)
         {
-          
-            var existingPerson = await _unitOfWork.Persons.GetById(Guid.Parse(Id)); ;
 
-            var originalpath = existingPerson.PictureUrl;
-            //Delete previous Image
+            var existingPerson = await _unitOfWork.Persons.GetById(Guid.Parse(Id));
+            var originalPath = existingPerson.PictureUrl;
+
+            // Delete previous Image
             if (ImageFile != null)
             {
-                string fullPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", existingPerson.PictureUrl);
-                if (System.IO.File.Exists(fullPath) && existingPerson.PictureUrl != "/images/default.jpg")
+
+                // Delete previous profile picture
+                string fullPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/" + existingPerson.PictureUrl);
+                if (System.IO.File.Exists(fullPath))
                 {
                     System.IO.File.Delete(fullPath);
                 }
 
-                //Write new image 
-                originalpath = DateTime.Now.Ticks + ImageFile.FileName;
+                // Write new image 
+                originalPath = "myImage"+ DateTime.Now.Ticks + ImageFile.FileName;
+                var filePath = Path.Combine("wwwroot", "images", originalPath);
 
-
-                var filePath = Path.Combine("wwwroot", "images", originalpath);
                 if (existingPerson.PictureUrl != "/images/Default.jpg")
                 {
                     using (var stream = new FileStream(filePath, FileMode.Create))
                     {
                         await ImageFile.CopyToAsync(stream);
-
                     }
                 }
-                originalpath = "/images/" + originalpath;
 
+                originalPath = "/images/" + originalPath;
             }
 
-            existingPerson.PictureUrl = originalpath;
+            existingPerson.PictureUrl = originalPath;
             existingPerson.Name = person.Name != "" ? person.Name : existingPerson.Name;
             existingPerson.Phone = person.Phone != "" ? person.Phone : existingPerson.Phone;
 
             _unitOfWork.Persons.Update(existingPerson);
             await _unitOfWork.CompleteAsync();
+
             return true;
         }
     

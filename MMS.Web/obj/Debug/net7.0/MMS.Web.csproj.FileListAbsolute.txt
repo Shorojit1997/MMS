@@ -295,3 +295,10 @@ C:\Dot.NET\Mess management System\MMS.Web\bin\Debug\net7.0\NETCore.MailKit.dll
 C:\Dot.NET\Mess management System\MMS.Web\bin\Debug\net7.0\BouncyCastle.Crypto.dll
 C:\Dot.NET\Mess management System\MMS.Web\bin\Debug\net7.0\BraintreeHttp-Dotnet.dll
 C:\Dot.NET\Mess management System\MMS.Web\bin\Debug\net7.0\Source.dll
+C:\Dot.NET\Mess management System\MMS.Web\bin\Debug\net7.0\Grpc.Core.dll
+C:\Dot.NET\Mess management System\MMS.Web\bin\Debug\net7.0\Grpc.Core.Api.dll
+C:\Dot.NET\Mess management System\MMS.Web\bin\Debug\net7.0\runtimes\linux-arm64\native\libgrpc_csharp_ext.arm64.so
+C:\Dot.NET\Mess management System\MMS.Web\bin\Debug\net7.0\runtimes\linux-x64\native\libgrpc_csharp_ext.x64.so
+C:\Dot.NET\Mess management System\MMS.Web\bin\Debug\net7.0\runtimes\osx-x64\native\libgrpc_csharp_ext.x64.dylib
+C:\Dot.NET\Mess management System\MMS.Web\bin\Debug\net7.0\runtimes\win-x64\native\grpc_csharp_ext.x64.dll
+C:\Dot.NET\Mess management System\MMS.Web\bin\Debug\net7.0\runtimes\win-x86\native\grpc_csharp_ext.x86.dll
