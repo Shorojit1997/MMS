@@ -16,5 +16,9 @@ namespace MMS.DataService.Service
         IDashboardServices DashboardService { get; }
 
         IAuthService AuthService { get; }
+
+        IAccountService AccountService { get; }
+
+        IPaypalService PaypalService { get; }
     }
 }

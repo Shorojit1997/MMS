@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMS.DataService", "..\MMS.D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMS.Authentication", "..\MMS.Authentication\MMS.Authentication.csproj", "{24BC4086-23B7-4E20-A6B4-BB4D167A274D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMS.Web", "..\MMS.Web\MMS.Web.csproj", "{DDFF6FFA-D2D2-4CBB-BD58-DDB8749736D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMS.Web", "MMS.Web.csproj", "{DDFF6FFA-D2D2-4CBB-BD58-DDB8749736D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

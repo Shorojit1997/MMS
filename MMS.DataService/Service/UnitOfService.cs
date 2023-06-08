@@ -24,6 +24,9 @@ namespace MMS.DataService.Service
         public IDashboardServices DashboardService { get; private set; }
 
         public IAuthService AuthService { get; private set; }
+        public IAccountService AccountService { get; private set; }
+
+        public IPaypalService PaypalService { get; private set; }
 
         public UnitOfService(
             IUnitOfWork unitOfWork,
@@ -37,6 +40,9 @@ namespace MMS.DataService.Service
             MealService = new MealService(unitOfWork);
             DashboardService=new DashboardService(unitOfWork);
             AuthService = new AuthService(unitOfWork,userManager, emailService,signManager);
+            AccountService = new AccountService(unitOfWork);
+
+            PaypalService = new PaypalService(unitOfWork) ;
         }
 
 

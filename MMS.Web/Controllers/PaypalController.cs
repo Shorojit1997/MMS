@@ -50,6 +50,9 @@ namespace MMS.Web.Controllers
                 var price = Convert.ToString(deposit.Amount);
                 var currency = "USD";
 
+                //Get Person Id from the Identity user
+
+                var id = HttpContext.User.Identity.Name;
                 //Set client id and Client secret for each person
 
                 bool isSet=await SetClientSecret(deposit.MessId);
@@ -58,8 +61,7 @@ namespace MMS.Web.Controllers
                     throw new Exception("Failed to assign Client Secret");
                 }
 
-                //Get Person Id from the Identity user
-                var id = HttpContext.User.Identity.Name;
+                
 
                 //Make a order request
                 var response = await _paypalClient.CreateOrder(price, currency);

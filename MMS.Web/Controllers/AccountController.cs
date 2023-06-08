@@ -17,58 +17,40 @@ namespace MMS.Web.Controllers
 
         public async Task<IActionResult> Index()
         {
-            //Checking the user account 
-            var id = HttpContext.User.Identity.Name;
-            var account = await _unitOfWork.Accounts.GetAccountDetailsByPersonId(Guid.Parse(id));
-            if(account == null)
+            try
             {
-                //If user not exist in Account table then create new account
-                var newAccount = new Account()
-                {
-                    ClientId="xxxx-xxxx-xxx-xxxx",
-                    ClientSecret="yyyy-yyyy-yyyy-yyyy",
-                    PersonId=Guid.Parse(id),
-                    UpdatedAt=DateTime.Now,
-                };
-                await _unitOfWork.Accounts.Add(newAccount);
-                await _unitOfWork.CompleteAsync();
-                account = newAccount;
+                var id = HttpContext.User.Identity.Name;
+                var accountDto = await _unitOfService.AccountService.GetDetailsServices(id);
+                return View(accountDto);
             }
-
-            //Preparing the account transfer object
-            var accountDto = new AccountDTO()
+            catch (Exception ex)
             {
-                ClientId = account.ClientId.Substring(0, 4) + "*****************************" + account.ClientId.Substring(account.ClientId.Length - 4, 4),
-                ClientSecret = account.ClientSecret.Substring(0, 4) + "*****************************" + account.ClientSecret.Substring(account.ClientSecret.Length - 4, 4),
-            };
-            return View(accountDto);
+                TempData["Error"] = ex.Message;
+                return RedirectToAction("Index","Error");
+            }
         }
 
         [HttpPost]
         public async Task<IActionResult> Edit_Accounts(AccountDTO account)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                TempData["Error"] = "Invalid informations";
+                if (!ModelState.IsValid)
+                {
+                    TempData["Error"] = "Invalid informations";
+                    return RedirectToAction("Index", "Account");
+                }
+                var id= HttpContext.User.Identity?.Name;
+                await _unitOfService.AccountService.Edit_Accounts(account, id);
                 return RedirectToAction("Index", "Account");
-            }
-            //get account details by person id
-            var id = HttpContext.User.Identity.Name;
-            var accountDetails= await _unitOfWork.Accounts.GetAccountDetailsByPersonId(Guid.Parse(id));
-            
-            //Checking the changes
-            if(!account.ClientId.Contains('*'))
-                accountDetails.ClientId=account.ClientId??accountDetails.ClientId;
-            if(!account.ClientSecret.Contains("*"))
-                accountDetails.ClientSecret = account.ClientSecret ?? accountDetails.ClientSecret;
-            //Assign the updated date
-            accountDetails.UpdatedAt = DateTime.UtcNow;
 
-            //Update the account details
-            _unitOfWork.Accounts.Update(accountDetails);
-            await _unitOfWork.CompleteAsync();
-            //If completed the update procedure then Redirect to the Index page
-            return RedirectToAction("Index","Account");
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = ex.Message; 
+                return RedirectToAction("Index","Error");
+            }
+            
         }
 
         [HttpGet]
