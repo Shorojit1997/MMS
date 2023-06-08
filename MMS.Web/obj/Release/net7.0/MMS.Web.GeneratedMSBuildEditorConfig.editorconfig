@@ -1,0 +1,209 @@
+is_global = true
+build_property.TargetFramework = net7.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = MMS.Web
+build_property.RootNamespace = MMS.Web
+build_property.ProjectDir = C:\Dot.NET\Mess management System\MMS.Web\
+build_property.RazorLangVersion = 7.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Dot.NET\Mess management System\MMS.Web
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Account/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Account/MessTransactions.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxNZXNzVHJhbnNhY3Rpb25zLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Account/Transactions.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxUcmFuc2FjdGlvbnMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Account/_Modals.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxfTW9kYWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Account/_Table_for_account.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxfVGFibGVfZm9yX2FjY291bnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Auth/CheckConfirmation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxDaGVja0NvbmZpcm1hdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Auth/ForgotPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxGb3Jnb3RQYXNzd29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Auth/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Auth/Registration.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxSZWdpc3RyYXRpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Auth/ResetPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxSZXNldFBhc3N3b3JkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Auth/SendMail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxTZW5kTWFpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Dashboard/EditMessHistory.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXEVkaXRNZXNzSGlzdG9yeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Dashboard/EditMonthHistory.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXEVkaXRNb250aEhpc3RvcnkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Dashboard/MessMembers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXE1lc3NNZW1iZXJzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Dashboard/Partials/_Card.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXFBhcnRpYWxzXF9DYXJkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Dashboard/Partials/_CardForMonth.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXFBhcnRpYWxzXF9DYXJkRm9yTW9udGguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Dashboard/Partials/_Headers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXFBhcnRpYWxzXF9IZWFkZXJzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Dashboard/Partials/_Modals.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXFBhcnRpYWxzXF9Nb2RhbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Dashboard/Partials/_ModalsForMonthHistory.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXFBhcnRpYWxzXF9Nb2RhbHNGb3JNb250aEhpc3RvcnkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Dashboard/Partials/_Modals_mess.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXFBhcnRpYWxzXF9Nb2RhbHNfbWVzcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Dashboard/Partials/_Sidebar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXFBhcnRpYWxzXF9TaWRlYmFyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Dashboard/Partials/_Table.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXFBhcnRpYWxzXF9UYWJsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Dashboard/ShowHistory.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXFNob3dIaXN0b3J5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Dashboard/ShowMonthHistory.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXFNob3dNb250aEhpc3RvcnkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Error/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXJyb3JcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Expense/Expenses.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXhwZW5zZVxFeHBlbnNlcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Expense/Partials/_CardForExpense.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXhwZW5zZVxQYXJ0aWFsc1xfQ2FyZEZvckV4cGVuc2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Expense/Partials/_Headers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXhwZW5zZVxQYXJ0aWFsc1xfSGVhZGVycy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Expense/Partials/_Modal_For_Expenses.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXhwZW5zZVxQYXJ0aWFsc1xfTW9kYWxfRm9yX0V4cGVuc2VzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Expense/Partials/_Sidebar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXhwZW5zZVxQYXJ0aWFsc1xfU2lkZWJhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Expense/Partials/_Table_Expenses.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXhwZW5zZVxQYXJ0aWFsc1xfVGFibGVfRXhwZW5zZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Meal/AllMembersAttendance.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVhbFxBbGxNZW1iZXJzQXR0ZW5kYW5jZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Meal/MyAttendance.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVhbFxNeUF0dGVuZGFuY2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Meal/Partials/_Headers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVhbFxQYXJ0aWFsc1xfSGVhZGVycy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Meal/Partials/_Sidebar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVhbFxQYXJ0aWFsc1xfU2lkZWJhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Paypal/Deposit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF5cGFsXERlcG9zaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Paypal/Success.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF5cGFsXFN1Y2Nlc3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Profile/ChangePassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZmlsZVxDaGFuZ2VQYXNzd29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Profile/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZmlsZVxEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Profile/UpdateProfile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZmlsZVxVcGRhdGVQcm9maWxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Shared/_LoginPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dot.NET/Mess management System/MMS.Web/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-f70mdyypg3
