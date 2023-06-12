@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "2hJDA7yVHcbynGgcR3hYb7pCGNirgUOFxyyEEQZl3Vw=",
+  "Hash": "UlrXK7C5kSCy1xBtO9Nw7rbU3qDJhdCTcK7hBPqh/Ik=",
   "Source": "MMS.Web",
   "BasePath": "_content/MMS.Web",
   "Mode": "Default",
@@ -102,12 +102,12 @@
       "OriginalItemSpec": "wwwroot\\images\\Default.jpg"
     },
     {
-      "Identity": "C:\\Dot.NET\\Mess management System\\MMS.Web\\wwwroot\\images\\myImage638218281815001800Rabindraanath.jpg",
+      "Identity": "C:\\Dot.NET\\Mess management System\\MMS.Web\\wwwroot\\images\\myImage6382218621017243281me.jpg",
       "SourceId": "MMS.Web",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Dot.NET\\Mess management System\\MMS.Web\\wwwroot\\",
       "BasePath": "_content/MMS.Web",
-      "RelativePath": "images/myImage638218281815001800Rabindraanath.jpg",
+      "RelativePath": "images/myImage6382218621017243281me.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -116,7 +116,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\myImage638218281815001800Rabindraanath.jpg"
+      "OriginalItemSpec": "wwwroot\\images\\myImage6382218621017243281me.jpg"
     },
     {
       "Identity": "C:\\Dot.NET\\Mess management System\\MMS.Web\\wwwroot\\js\\DashboardController.js",

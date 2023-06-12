@@ -15,5 +15,7 @@ namespace MMS.DataService.IRepository
         Task<List<PersonDTO>> GetDaysByMonthId(Guid MonthId,Guid MessId,Guid PersonId);
 
         Task<bool> ChangeDayStatusByMonthIdAndDayNo(Guid MonthId,int DayNo);
+
+        Task<CurrentDayCalculationDTO> GetTodaysMealCountByMonthId(Guid MonthId);
     }
 }

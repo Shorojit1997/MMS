@@ -144,7 +144,8 @@ namespace MMS.DataService.Repository
                     }
                 }
             }
-  
+
+
 
             return allPersons;
         }
@@ -155,6 +156,25 @@ namespace MMS.DataService.Repository
                 .Where(e => e.Person_Id == PersonId && e.Month_Id == MonthId)
                 .OrderBy(a=>a.Number)
                 .ToListAsync();
+        }
+
+        public async Task<CurrentDayCalculationDTO> GetTodaysMealCountByMonthId(Guid MonthId)
+        {
+            var todays=await dbset.Where(a=>a.Month_Id==MonthId && a.IsEnd==false).OrderBy(a=>a.Number).FirstAsync();
+            var currentDay=new CurrentDayCalculationDTO();
+            if(todays is not  null)
+            {
+                var allDays=await dbset.Where(a=> a.Month_Id==MonthId && a.Number==todays.Number).ToListAsync();
+                currentDay.Number = todays.Number;
+                foreach(var day in allDays)
+                {
+                    currentDay.BreakFast += day.Breakfast;
+                    currentDay.Lunch += day.Lunch;
+                    currentDay.Dinner += day.Dinner;
+                }
+            }
+
+            return currentDay;
         }
     }
 }

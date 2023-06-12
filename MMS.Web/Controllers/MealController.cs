@@ -50,9 +50,11 @@ namespace MMS.Web.Controllers
                 var id = HttpContext.User.Identity.Name;
 
                 var AllDetails = await _unitOfWork.Days.GetDaysByMonthId(Guid.Parse(MonthId),Guid.Parse(MessId),Guid.Parse(id));
+                var todaysMealCalculation = await _unitOfWork.Days.GetTodaysMealCountByMonthId(Guid.Parse(MonthId));
                 ViewBag.AllMembers = AllDetails;
                 ViewBag.MonthId = MonthId;
                 ViewBag.MessId = MessId;
+                ViewBag.Todays = todaysMealCalculation;
                 return View();
             }
             catch (Exception ex)
@@ -133,6 +135,33 @@ namespace MMS.Web.Controllers
             }
         }
 
+
+
+
+        public async Task<IActionResult> GeneratePdfReport(string MonthId, string MessId)
+        {
+            try
+            {
+                if (MonthId == null || MessId == null)
+                {
+                    throw new Exception("Invalid Route");
+                }
+                var id = HttpContext.User.Identity.Name;
+
+                var AllDetails = await _unitOfWork.Days.GetDaysByMonthId(Guid.Parse(MonthId), Guid.Parse(MessId), Guid.Parse(id));
+                var todaysMealCalculation = await _unitOfWork.Days.GetTodaysMealCountByMonthId(Guid.Parse(MonthId));
+                ViewBag.AllMembers = AllDetails;
+                ViewBag.MonthId = MonthId;
+                ViewBag.MessId = MessId;
+                ViewBag.Todays = todaysMealCalculation;
+                return View();
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = ex.Message;
+                return RedirectToAction("Index", "Error");
+            }
+        }
 
     }
 }

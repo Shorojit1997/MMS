@@ -19,6 +19,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using MMS.DataService.IRepository;
 using MMS.DataService.Service;
+using System.Net.Mail;
+using System.Text.RegularExpressions;
 
 namespace MMS.Web.Controllers
 {
@@ -89,9 +91,18 @@ namespace MMS.Web.Controllers
 
             try
             {
+                var pattern = @"^[a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$";
+                var regex = new Regex(pattern);
+
+
                 if (!ModelState.IsValid)
                     return View(person);
-                
+               
+                if (!regex.IsMatch(person.Email))
+                {
+                    ModelState.AddModelError("Email", "Invalid Email address");
+                    return View(person);
+                }
 
                 var authProperties = new AuthenticationProperties
                 {

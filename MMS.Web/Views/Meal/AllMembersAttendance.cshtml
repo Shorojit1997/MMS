@@ -2,13 +2,24 @@
 
 
 <div class="row mt-4">
-    <div class="col-10">
+    <div id="forpdfdownload" class="col-10">
         <!-- Sidebar -->
         <div class="row bg-light">
             <div class="col-6">
                 <h4>Current Month Meal Status!</h4>
             </div>
-            <div class="col-6 d-flex justify-content-between">
+            <div class="col-6 ">
+                <div class="row" style="background-color:aquamarine">
+                    <div class="col-4">
+                        <i>Breakfast : </i> @ViewBag.Todays.BreakFast
+                    </div>
+                    <div class="col-4">
+                        <i>Lunch : </i> @ViewBag.Todays.Lunch
+                    </div>
+                    <div class="col-4">
+                        <i>Dinner : </i> @ViewBag.Todays.Dinner
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -33,7 +44,7 @@
             </div>
 
             <div class="col-6">
-                <div class="table-responsive">
+                <div id="TableResponsive" class="table-responsive">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -61,11 +72,12 @@
                                             <td class="bg-dark">
                                                 @if (day.Dinner > 0)
                                                 {
-                                                    <p style="font-size: 10px;" class="bg-success m-0 p-1 text-center"><b>On</b></p>
+
+                                                    <p data-bs-toggle="tooltip" title="@day.Breakfast  @day.Lunch  @day.Dinner" style="font-size: 10px;" class="bg-success text-white m-0 p-1 text-center"><b>On</b></p>
                                                 }
                                                 else
                                                 {
-                                                    <p style="font-size: 10px;" class="bg-info m-0 p-1 text-center"><b>Off</b></p>
+                                                    <p data-bs-toggle="tooltip" title="@day.Breakfast  @day.Lunch  @day.Dinner" style="font-size: 10px;" class="bg-info m-0 p-1 text-center"><b>Off</b></p>
                                                 }
                                             </td>
                                         }
@@ -74,11 +86,11 @@
                                             <td>
                                                 @if (day.Dinner > 0)
                                                 {
-                                                    <p style="font-size: 10px;" class="bg-success m-0 p-1 text-center"><b>On</b></p>
+                                                    <p data-bs-toggle="tooltip" title="@day.Breakfast  @day.Lunch  @day.Dinner" style="font-size: 10px;" class="bg-success text-white m-0 p-1 text-center"><b>On</b></p>
                                                 }
                                                 else
                                                 {
-                                                    <p style="font-size: 10px;" class="bg-info m-0 p-1 text-center"><b>Off</b></p>
+                                                    <p data-bs-toggle="tooltip" title="@day.Breakfast  @day.Lunch  @day.Dinner" style="font-size: 10px;" class="bg-info m-0 p-1 text-center"><b>Off</b></p>
                                                 }
                                             </td>
                                         }
@@ -103,17 +115,27 @@
                         @foreach (var days in ViewBag.AllMembers)
                         {
                             <tr>
-                                 <td>@days.TotalMeal</td>
-                                 <td>@days.TotalCost</td>
-                                 <td>@(days.Balance-days.TotalCost)</td>
+                                <td>@(days.TotalMeal.ToString("0.00"))</td>
+                                <td>@(days.TotalCost.ToString("0.00"))</td>
+                                <td>@((days.Balance - days.TotalCost).ToString("0.00"))</td>
                             </tr>
                         }
                     </tbody>
                 </table>
             </div>
         </div>
+        <div class="row">
+            <div class="col-8"></div>
+            <div class="col-2">
+                <a href="@Url.Action("GeneratePdfReport","Meal",new{MonthId=ViewBag.MonthId, MessId=ViewBag.MessId})" target="_blank" class="btn btn-sm btn-light">Generate Report</a>
+            </div>
+        </div>
+
+
+ 
     </div>
     <div class="col-2">
         @Html.Partial("../Expense/Partials/_Sidebar")
     </div>
 </div>
+

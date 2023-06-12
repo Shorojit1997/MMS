@@ -1,0 +1,82 @@
+﻿
+        <div id="par1" class="row">
+            <div class="col-12">
+                <h4>@DateTime.UtcNow.ToString("MM/dd/yyyy") Month Meal Status!</h4>
+            </div>
+            <div class="col-4">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th style="color: black">Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var user in ViewBag.AllMembers)
+                        {
+                            <tr>
+                                <td style="color: black">@user.Name</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-7">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Total Meal</th>
+                            <th>Total Cost</th>
+                            <th>Balance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var days in ViewBag.AllMembers)
+                        {
+                            <tr>
+                                <td>@(days.TotalMeal.ToString("0.00"))</td>
+                                <td>@(days.TotalCost.ToString("0.00"))</td>
+                                <td>@((days.Balance - days.TotalCost).ToString("0.00"))</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+
+        <div class="row">
+             
+            <div class="col-8">
+
+            </div>
+            <div class="col-2">
+                 <a type="button" onclick="forPdf();" class="btn btn-sm btn-success">Download Report</a>
+            </div>
+           <div class="col-2">
+              <a href="@Url.Action("AllMembersAttendance","Meal",new{MonthId=ViewBag.MonthId, MessId=ViewBag.MessId})" class="btn btn-sm btn-light">Back</a>
+           </div>
+        </div>
+   
+
+
+@section Scripts {
+
+    <script>
+        function forPdf() {
+            var opt = {
+                margin: 1,
+                filename: 'myfile.pdf',
+                image: { type: 'png', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'landscape' }
+            };
+            var element = $("#par1");
+            html2pdf().set(opt).from(element[0]).save();
+
+        }
+
+
+    </script>
+ }
