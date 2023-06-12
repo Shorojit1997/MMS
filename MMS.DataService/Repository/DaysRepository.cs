@@ -33,14 +33,35 @@ namespace MMS.DataService.Repository
             }
         }
 
-        public async Task<List<PersonDTO>> GetDaysByMonthId(Guid MonthId)
+        public async Task<bool> ChangeDayStatusByMonthIdAndDayNo(Guid MonthId, int DayNo)
         {
+            try
+            {
+                var days = await dbset.Where(e => e.Month_Id == MonthId && e.Number == DayNo).ToListAsync();
+                foreach (var day in days)
+                {
+                    day.IsEnd = !day.IsEnd;
+                }
+                dbset.UpdateRange(days);
+                return true;
+            }
+            catch(Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public async Task<List<PersonDTO>> GetDaysByMonthId(Guid MonthId, Guid MessId, Guid PersonId)
+        {
+            //finding all of the days based on the monthId 
             var days= await dbset
                .Where(e => e.Month_Id == MonthId)
                .OrderBy(a => a.Person_Id)
                .OrderBy(b=>b.Number)
                .ToListAsync();
 
+
+            //finding the all of person_id according to this mess
             var uniquePersonIds = days.Select(item => item.Person_Id).Distinct().ToList();
             var allPersons = await _context.Persons
                            .Where(item => uniquePersonIds.Contains(item.Id))
@@ -50,6 +71,9 @@ namespace MMS.DataService.Repository
                                Id = item.Id,
                            })
                            .ToListAsync();
+
+
+            //adding day of in each person
             foreach (var day in days)
             {
                 foreach(var person in allPersons)
@@ -62,6 +86,67 @@ namespace MMS.DataService.Repository
                 }
             }
 
+
+            //finding totalDeposit based on the MessId and groupby the messId
+            var deposits = await _context.Deposits
+                        .Where(e => e.MessId == MessId && e.Success == true)
+                        .GroupBy(b => b.PersonId)
+                        .Select(g => new
+                                      {
+                                         PersonId = g.Key,
+                                          TotalAmount = g.Sum(a => a.Amount)
+                                       })
+                          .ToListAsync();
+
+            foreach(var person in allPersons)
+            {
+                 foreach( var deposit in deposits)
+                 {
+                    if (deposit.PersonId == person.Id)
+                    {
+                        person.Balance = deposit.TotalAmount>0 ?deposit.TotalAmount:person.Balance;
+                        break;
+                    }
+                }
+            }
+            //finding individual total meal
+           var individualTotalMeal = await _context.Days
+                       .Where(e => e.Month_Id == MonthId && e.IsEnd == true)
+                       .GroupBy(b => b.Person_Id)
+                       .Select(g => new
+                       {
+                           PersonId = g.Key,
+                           TotalMeal = g.Sum(a => a.Breakfast+a.Lunch+a.Dinner)
+                       })
+                         .ToListAsync();
+
+
+            //counting total meal of this month
+            var totalMeal = individualTotalMeal.Sum(a => a.TotalMeal);
+            var totalCost = await _context.Expenses
+                        .Where(e => e.MessId == MessId && e.MonthId == MonthId)
+                        .SumAsync(b => b.Amount);
+
+            var mealRate = 0.00;
+            if(totalMeal>0)
+                mealRate= totalCost / totalMeal;
+            
+
+            foreach (var person in allPersons)
+            {
+                foreach (var meal in individualTotalMeal)
+                {
+                    if (meal.PersonId == person.Id)
+                    {
+                        person.TotalMeal = meal.TotalMeal;
+                        person.TotalCost=Convert.ToDouble( meal.TotalMeal*mealRate);
+                        break;
+                    }
+                }
+            }
+
+
+
             return allPersons;
         }
 
@@ -71,6 +156,25 @@ namespace MMS.DataService.Repository
                 .Where(e => e.Person_Id == PersonId && e.Month_Id == MonthId)
                 .OrderBy(a=>a.Number)
                 .ToListAsync();
+        }
+
+        public async Task<CurrentDayCalculationDTO> GetTodaysMealCountByMonthId(Guid MonthId)
+        {
+            var todays=await dbset.Where(a=>a.Month_Id==MonthId && a.IsEnd==false).OrderBy(a=>a.Number).FirstAsync();
+            var currentDay=new CurrentDayCalculationDTO();
+            if(todays is not  null)
+            {
+                var allDays=await dbset.Where(a=> a.Month_Id==MonthId && a.Number==todays.Number).ToListAsync();
+                currentDay.Number = todays.Number;
+                foreach(var day in allDays)
+                {
+                    currentDay.BreakFast += day.Breakfast;
+                    currentDay.Lunch += day.Lunch;
+                    currentDay.Dinner += day.Dinner;
+                }
+            }
+
+            return currentDay;
         }
     }
 }

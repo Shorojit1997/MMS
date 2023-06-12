@@ -19,5 +19,9 @@ namespace MMS.Entities.Dtos.Incomming
         public string? PictureUrl { get; set; } = "/images/Default.jpg";
         public List<Days>? Days { get; set; }=new List<Days>();
 
+        public int? TotalMeal { get; set; } = 0;
+        public double? TotalCost { get; set; } = 0;
+        public double? Balance { get; set; } = 0;
+
     }
 }

@@ -13,32 +13,12 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
-      "Id": "C:\\Dot.NET\\Mess management System\\MMS.Web\\wwwroot\\images\\638211410549175589Me.jpg",
-      "PackagePath": "staticwebassets\\images\\638211410549175589Me.jpg"
-    },
-    {
-      "Id": "C:\\Dot.NET\\Mess management System\\MMS.Web\\wwwroot\\images\\6382114198350848111me.jpg",
-      "PackagePath": "staticwebassets\\images\\6382114198350848111me.jpg"
-    },
-    {
-      "Id": "C:\\Dot.NET\\Mess management System\\MMS.Web\\wwwroot\\images\\6382115316442229481me.jpg",
-      "PackagePath": "staticwebassets\\images\\6382115316442229481me.jpg"
-    },
-    {
-      "Id": "C:\\Dot.NET\\Mess management System\\MMS.Web\\wwwroot\\images\\638212262848240283Rabindraanath.jpg",
-      "PackagePath": "staticwebassets\\images\\638212262848240283Rabindraanath.jpg"
-    },
-    {
-      "Id": "C:\\Dot.NET\\Mess management System\\MMS.Web\\wwwroot\\images\\638212263052954425Rabindraanath.jpg",
-      "PackagePath": "staticwebassets\\images\\638212263052954425Rabindraanath.jpg"
-    },
-    {
-      "Id": "C:\\Dot.NET\\Mess management System\\MMS.Web\\wwwroot\\images\\6382123875721633531me.jpg",
-      "PackagePath": "staticwebassets\\images\\6382123875721633531me.jpg"
-    },
-    {
       "Id": "C:\\Dot.NET\\Mess management System\\MMS.Web\\wwwroot\\images\\Default.jpg",
       "PackagePath": "staticwebassets\\images\\Default.jpg"
+    },
+    {
+      "Id": "C:\\Dot.NET\\Mess management System\\MMS.Web\\wwwroot\\images\\myImage6382218621017243281me.jpg",
+      "PackagePath": "staticwebassets\\images\\myImage6382218621017243281me.jpg"
     },
     {
       "Id": "C:\\Dot.NET\\Mess management System\\MMS.Web\\wwwroot\\js\\DashboardController.js",
@@ -227,6 +207,42 @@
     {
       "Id": "C:\\Dot.NET\\Mess management System\\MMS.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "C:\\Dot.NET\\Mess management System\\MMS.Web\\wwwroot\\lib\\font-awesome\\css\\all.css",
+      "PackagePath": "staticwebassets\\lib\\font-awesome\\css\\all.css"
+    },
+    {
+      "Id": "C:\\Dot.NET\\Mess management System\\MMS.Web\\wwwroot\\lib\\font-awesome\\webfonts\\fa-brands-400.ttf",
+      "PackagePath": "staticwebassets\\lib\\font-awesome\\webfonts\\fa-brands-400.ttf"
+    },
+    {
+      "Id": "C:\\Dot.NET\\Mess management System\\MMS.Web\\wwwroot\\lib\\font-awesome\\webfonts\\fa-brands-400.woff2",
+      "PackagePath": "staticwebassets\\lib\\font-awesome\\webfonts\\fa-brands-400.woff2"
+    },
+    {
+      "Id": "C:\\Dot.NET\\Mess management System\\MMS.Web\\wwwroot\\lib\\font-awesome\\webfonts\\fa-regular-400.ttf",
+      "PackagePath": "staticwebassets\\lib\\font-awesome\\webfonts\\fa-regular-400.ttf"
+    },
+    {
+      "Id": "C:\\Dot.NET\\Mess management System\\MMS.Web\\wwwroot\\lib\\font-awesome\\webfonts\\fa-regular-400.woff2",
+      "PackagePath": "staticwebassets\\lib\\font-awesome\\webfonts\\fa-regular-400.woff2"
+    },
+    {
+      "Id": "C:\\Dot.NET\\Mess management System\\MMS.Web\\wwwroot\\lib\\font-awesome\\webfonts\\fa-solid-900.ttf",
+      "PackagePath": "staticwebassets\\lib\\font-awesome\\webfonts\\fa-solid-900.ttf"
+    },
+    {
+      "Id": "C:\\Dot.NET\\Mess management System\\MMS.Web\\wwwroot\\lib\\font-awesome\\webfonts\\fa-solid-900.woff2",
+      "PackagePath": "staticwebassets\\lib\\font-awesome\\webfonts\\fa-solid-900.woff2"
+    },
+    {
+      "Id": "C:\\Dot.NET\\Mess management System\\MMS.Web\\wwwroot\\lib\\font-awesome\\webfonts\\fa-v4compatibility.ttf",
+      "PackagePath": "staticwebassets\\lib\\font-awesome\\webfonts\\fa-v4compatibility.ttf"
+    },
+    {
+      "Id": "C:\\Dot.NET\\Mess management System\\MMS.Web\\wwwroot\\lib\\font-awesome\\webfonts\\fa-v4compatibility.woff2",
+      "PackagePath": "staticwebassets\\lib\\font-awesome\\webfonts\\fa-v4compatibility.woff2"
     },
     {
       "Id": "C:\\Dot.NET\\Mess management System\\MMS.Web\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",

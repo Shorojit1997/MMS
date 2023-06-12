@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Identity.Client;
 using MMS.DataService.Data;
-using MMS.DataService.IConfiguration;
 using MMS.DataService.IRepository;
 using MMS.Entities.DbSet;
 using MMS.Entities.Dtos.Incomming;
@@ -74,11 +73,13 @@ namespace MMS.DataService.Repository
 
         public async Task<IEnumerable<Guid>> GetAllManagersDetailsByMessId(Guid messId)
         {
-            return await dbset
+            var PersonId= await dbset
                 .Include(e => e.Persons)
                 .Where(x => x.MessId == messId && x.IsManager == true)
                 .Select(item => (Guid)item.PersonId)
                 .ToListAsync();
+
+            return PersonId;
         }
     }
 }

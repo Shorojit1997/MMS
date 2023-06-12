@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MMS.DataService.IConfiguration;
+using MMS.DataService.IRepository;
+using MMS.DataService.Service;
 
 namespace MMS.Web.Controllers
 {
@@ -7,9 +8,11 @@ namespace MMS.Web.Controllers
     {
         protected readonly ILogger<BaseController> _logger;
         protected readonly IUnitOfWork _unitOfWork;
-        public BaseController(IUnitOfWork unitOfWork)
+        protected readonly IUnitOfService _unitOfService;
+        public BaseController(IUnitOfWork unitOfWork, IUnitOfService unitOfService)
         {
             _unitOfWork = unitOfWork;
+            _unitOfService = unitOfService;
         }
     }
 }

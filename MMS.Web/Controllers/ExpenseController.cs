@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using MMS.DataService.IConfiguration;
+using MMS.DataService.IRepository;
+using MMS.DataService.Service;
 using MMS.Entities.DbSet;
 using MMS.Entities.Dtos.Incomming;
 
@@ -9,7 +10,7 @@ namespace MMS.Web.Controllers
     [Authorize]
     public class ExpenseController : BaseController
     {
-        public ExpenseController(IUnitOfWork unitOfWork) : base(unitOfWork)
+        public ExpenseController(IUnitOfWork unitOfWork, IUnitOfService unitOfService) : base(unitOfWork, unitOfService)
         {
         }
 
@@ -50,7 +51,7 @@ namespace MMS.Web.Controllers
             catch(Exception ex)
             {
                 TempData["Error"]=ex.Message;
-                return RedirectToAction("ShowHistory", "Dashboard");
+                return RedirectToAction("Index", "Error");
             }
 
         }

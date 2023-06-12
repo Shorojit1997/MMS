@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 using MMS.DataService.Data;
-using MMS.DataService.IConfiguration;
+using MMS.DataService.IRepository;
 
 namespace MMS.DataService.Middleware
 {

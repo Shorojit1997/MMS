@@ -6,6 +6,7 @@
     <a class="list-group-item list-group-item-action" href="@Url.Action("MyAttendance","Meal",new{MonthId=ViewBag.MonthId, MessId=ViewBag.MessId})">My Attendence</a>
     <a class="list-group-item list-group-item-action" href="@Url.Action("AllMembersAttendance","Meal",new{MonthId=ViewBag.MonthId, MessId=ViewBag.MessId})">All Member Attendence</a>
     <a class="list-group-item list-group-item-action" href="@Url.Action("MessTransactions","Account",new{MessId=ViewBag.MessId})">Transactions</a>
-    <a href="#" class="list-group-item list-group-item-action">Payment</a>
-    <a href="#" class="list-group-item list-group-item-action">Settings</a>
+    <a class="list-group-item list-group-item-action" href="@Url.Action("ShowMonthHistory","Dashboard",new{MessId=ViewBag.MessId})">Months History</a>
+    <a class="list-group-item list-group-item-action" href="@Url.Action("ShowHistory","Dashboard")">Mess History</a>
+ 
 </div>

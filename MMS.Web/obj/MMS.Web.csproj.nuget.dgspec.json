@@ -89,6 +89,9 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
+              "C:\\Dot.NET\\Mess management System\\MMS.Authentication\\MMS.Authentication.csproj": {
+                "projectPath": "C:\\Dot.NET\\Mess management System\\MMS.Authentication\\MMS.Authentication.csproj"
+              },
               "C:\\Dot.NET\\Mess management System\\MMS.Entity\\MMS.Entities.csproj": {
                 "projectPath": "C:\\Dot.NET\\Mess management System\\MMS.Entity\\MMS.Entities.csproj"
               }
@@ -105,9 +108,17 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "Grpc.Core": {
+              "target": "Package",
+              "version": "[2.46.6, )"
+            },
             "Microsoft.AspNetCore.Http": {
               "target": "Package",
               "version": "[2.2.2, )"
+            },
+            "Microsoft.AspNetCore.Identity": {
+              "target": "Package",
+              "version": "[2.2.0, )"
             },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",

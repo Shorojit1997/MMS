@@ -1,8 +1,9 @@
 ﻿using Azure;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using MMS.DataService.IConfiguration;
+using MMS.DataService.IRepository;
 using MMS.DataService.Paypal;
+using MMS.DataService.Service;
 using MMS.Entities.DbSet;
 using MMS.Entities.Dtos.Incomming;
 using System.Runtime.CompilerServices;
@@ -14,7 +15,7 @@ namespace MMS.Web.Controllers
     {
         private readonly PaypalClient _paypalClient;
 
-        public PaypalController(IUnitOfWork unitOfWork) : base(unitOfWork) 
+        public PaypalController(IUnitOfWork unitOfWork, IUnitOfService unitOfService) : base(unitOfWork, unitOfService) 
         {
             _paypalClient = new PaypalClient();
         }
@@ -49,6 +50,9 @@ namespace MMS.Web.Controllers
                 var price = Convert.ToString(deposit.Amount);
                 var currency = "USD";
 
+                //Get Person Id from the Identity user
+
+                var id = HttpContext.User.Identity.Name;
                 //Set client id and Client secret for each person
 
                 bool isSet=await SetClientSecret(deposit.MessId);
@@ -57,8 +61,7 @@ namespace MMS.Web.Controllers
                     throw new Exception("Failed to assign Client Secret");
                 }
 
-                //Get Person Id from the Identity user
-                var id = HttpContext.User.Identity.Name;
+                
 
                 //Make a order request
                 var response = await _paypalClient.CreateOrder(price, currency);

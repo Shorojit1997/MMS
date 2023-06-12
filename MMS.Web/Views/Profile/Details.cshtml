@@ -1,6 +1,13 @@
 ﻿@model MMS.Entities.Dtos.Outgoing.ProfileUpdateResponseDTO
 
-<h4>@TempData["Success"]</h4>
+<div class="d-flex justify-content-center align-items-center">
+
+    @if (TempData["Success"] != null)
+    {
+        <h4>@TempData["Success"]</h4>
+    }
+
+</div>
 
 <div class="container">
     <div class="d-flex justify-content-center">
@@ -15,12 +22,18 @@
                     <h2>Name : @Model.Name</h2>
                     <p>Phone : @Model.Phone</p>
                     <p>Email : @Model.Email</p>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Update
-                    </button>
-                    <a class="nav-link text-dark" href="@Url.Action("ChangePassword", "Profile")">
-                        Change Password
-                    </a>
+                    <div class="row">
+                        <div class="col-4">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                Update
+                            </button>
+                        </div>
+                        <div class="col-6">
+                            <a class="nav-link" href="@Url.Action("ChangePassword", "Profile")">
+                                Change Password
+                            </a>
+                        </div>
+                    </div>
                 </div>
 
             </div>

@@ -12,6 +12,10 @@ namespace MMS.DataService.IRepository
     {
         Task<bool> AddRange(IEnumerable<Days> days); 
         Task<List<Days>> GetDaysByMonthIdAndPersonId(Guid MonthId,Guid PersonId);
-        Task<List<PersonDTO>> GetDaysByMonthId(Guid MonthId);
+        Task<List<PersonDTO>> GetDaysByMonthId(Guid MonthId,Guid MessId,Guid PersonId);
+
+        Task<bool> ChangeDayStatusByMonthIdAndDayNo(Guid MonthId,int DayNo);
+
+        Task<CurrentDayCalculationDTO> GetTodaysMealCountByMonthId(Guid MonthId);
     }
 }

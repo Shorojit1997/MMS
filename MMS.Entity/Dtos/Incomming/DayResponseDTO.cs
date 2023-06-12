@@ -11,5 +11,6 @@ namespace MMS.Entities.Dtos.Incomming
     {
         public bool Success { get; set; }
         public Days? Days { get; set; }
+        public string? Message { get; set; }
     }
 }

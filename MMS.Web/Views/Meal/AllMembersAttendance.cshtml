@@ -2,13 +2,24 @@
 
 
 <div class="row mt-4">
-    <div class="col-10">
+    <div id="forpdfdownload" class="col-10">
         <!-- Sidebar -->
         <div class="row bg-light">
             <div class="col-6">
                 <h4>Current Month Meal Status!</h4>
             </div>
-            <div class="col-6 d-flex justify-content-between">
+            <div class="col-6 ">
+                <div class="row" style="background-color:aquamarine">
+                    <div class="col-4">
+                        <i>Breakfast : </i> @ViewBag.Todays.BreakFast
+                    </div>
+                    <div class="col-4">
+                        <i>Lunch : </i> @ViewBag.Todays.Lunch
+                    </div>
+                    <div class="col-4">
+                        <i>Dinner : </i> @ViewBag.Todays.Dinner
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -32,15 +43,23 @@
                 </table>
             </div>
 
-            <div class="col-8">
-                <div class="table-responsive">
+            <div class="col-6">
+                <div id="TableResponsive" class="table-responsive">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                @for (int i = 1; i < 32; i++)
+                                @foreach (var item in ViewBag.AllMembers[0].Days)
                                 {
-                                    <th>@i</th>
+                                    if (item.IsEnd == true)
+                                    {
+                                        <th class="bg-dark"><a class="btn btn-sm btn-warning" href="@Url.Action("CloseTheDay","Meal",new{MonthId=ViewBag.MonthId, MessId=ViewBag.MessId,DayNo=item.Number})">@item.Number</a></th>
+                                    }
+                                    else
+                                    {
+                                        <th class="bg-light"><a class="btn btn-sm btn-warning" href="@Url.Action("CloseTheDay","Meal",new{MonthId=ViewBag.MonthId, MessId=ViewBag.MessId,DayNo=item.Number})">@item.Number</a></th>
+                                    }
                                 }
+                              
                             </tr>
                         </thead>
                         <tbody>
@@ -49,16 +68,33 @@
                                 <tr>
                                     @foreach (var day in days.Days)
                                     {
-                                        <td>
-                                            @if (day.Dinner > 0)
-                                            {
-                                                <p style="font-size: 10px;" class="bg-success m-0 p-1 text-center"><b>On</b></p>
-                                            }
-                                            else
-                                            {
-                                                <p style="font-size: 10px;" class="bg-info m-0 p-1 text-center"><b>Off</b></p>
-                                            }
-                                        </td>
+                                        @if(day.IsEnd==true){
+                                            <td class="bg-dark">
+                                                @if (day.Dinner > 0)
+                                                {
+
+                                                    <p data-bs-toggle="tooltip" title="@day.Breakfast  @day.Lunch  @day.Dinner" style="font-size: 10px;" class="bg-success text-white m-0 p-1 text-center"><b>On</b></p>
+                                                }
+                                                else
+                                                {
+                                                    <p data-bs-toggle="tooltip" title="@day.Breakfast  @day.Lunch  @day.Dinner" style="font-size: 10px;" class="bg-info m-0 p-1 text-center"><b>Off</b></p>
+                                                }
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                @if (day.Dinner > 0)
+                                                {
+                                                    <p data-bs-toggle="tooltip" title="@day.Breakfast  @day.Lunch  @day.Dinner" style="font-size: 10px;" class="bg-success text-white m-0 p-1 text-center"><b>On</b></p>
+                                                }
+                                                else
+                                                {
+                                                    <p data-bs-toggle="tooltip" title="@day.Breakfast  @day.Lunch  @day.Dinner" style="font-size: 10px;" class="bg-info m-0 p-1 text-center"><b>Off</b></p>
+                                                }
+                                            </td>
+                                        }
+                                       
                                     }
                                 </tr>
                             }
@@ -66,10 +102,40 @@
                     </table>
                 </div>
             </div>
-            <div class="col-2"></div>
+            <div class="col-4">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Total Meal</th>
+                            <th>Total Cost</th>
+                            <th>Balance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var days in ViewBag.AllMembers)
+                        {
+                            <tr>
+                                <td>@(days.TotalMeal.ToString("0.00"))</td>
+                                <td>@(days.TotalCost.ToString("0.00"))</td>
+                                <td>@((days.Balance - days.TotalCost).ToString("0.00"))</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
+        <div class="row">
+            <div class="col-8"></div>
+            <div class="col-2">
+                <a href="@Url.Action("GeneratePdfReport","Meal",new{MonthId=ViewBag.MonthId, MessId=ViewBag.MessId})" target="_blank" class="btn btn-sm btn-light">Generate Report</a>
+            </div>
+        </div>
+
+
+ 
     </div>
     <div class="col-2">
         @Html.Partial("../Expense/Partials/_Sidebar")
     </div>
 </div>
+

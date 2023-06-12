@@ -11,5 +11,7 @@ namespace MMS.DataService.IRepository
     {
         Task<IEnumerable<Month>> GetMonthsByMessId(Guid MessId);
         Task<bool> AddRange(List<Days> days);
+
+        Task<Month> GetLastMonthByMessId(Guid MessId);
     }
 }
