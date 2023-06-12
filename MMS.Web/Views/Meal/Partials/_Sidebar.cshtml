@@ -1,0 +1,10 @@
+﻿
+
+<div class="list-group">
+    <a class="list-group-item list-group-item-action" href="@Url.Action("Expenses","Expense",new{MonthId=ViewBag.MonthId, MessId=ViewBag.MessId})">Expenses</a>
+   
+    <a class="list-group-item list-group-item-action" href="@Url.Action("MyAttendance","Meal",new{MonthId=ViewBag.MonthId, MessId=ViewBag.MessId})">My Attendence</a>
+    <a class="list-group-item list-group-item-action" href="@Url.Action("AllMembersAttendance","Meal",new{MonthId=ViewBag.MonthId, MessId=ViewBag.MessId})">All Member Attendence</a>
+    <a class="list-group-item list-group-item-action" href="@Url.Action("MessTransactions","Account",new{MessId=ViewBag.MessId})">Transactions</a>
+   
+</div>

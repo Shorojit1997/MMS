@@ -55,6 +55,50 @@ namespace MMS.DataService.Migrations
                     b.ToTable("Accounts");
                 });
 
+            modelBuilder.Entity("MMS.Entities.DbSet.Days", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Breakfast")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Dinner")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsEnd")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsStart")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Lunch")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("Month_Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Number")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("Person_Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int?>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Days");
+                });
+
             modelBuilder.Entity("MMS.Entities.DbSet.Deposit", b =>
                 {
                     b.Property<Guid>("Id")
@@ -95,6 +139,46 @@ namespace MMS.DataService.Migrations
                     b.ToTable("Deposits");
                 });
 
+            modelBuilder.Entity("MMS.Entities.DbSet.Expense", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<double>("Amount")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("MessId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("MonthId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int?>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MessId");
+
+                    b.HasIndex("MonthId");
+
+                    b.ToTable("Expenses");
+                });
+
             modelBuilder.Entity("MMS.Entities.DbSet.Mess", b =>
                 {
                     b.Property<Guid>("Id")
@@ -108,9 +192,8 @@ namespace MMS.DataService.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("StartDate")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<int?>("Status")
                         .HasColumnType("int");
@@ -462,6 +545,21 @@ namespace MMS.DataService.Migrations
                     b.Navigation("Person");
                 });
 
+            modelBuilder.Entity("MMS.Entities.DbSet.Expense", b =>
+                {
+                    b.HasOne("MMS.Entities.DbSet.Mess", "Mess")
+                        .WithMany()
+                        .HasForeignKey("MessId");
+
+                    b.HasOne("MMS.Entities.DbSet.Month", "Month")
+                        .WithMany("Expenses")
+                        .HasForeignKey("MonthId");
+
+                    b.Navigation("Mess");
+
+                    b.Navigation("Month");
+                });
+
             modelBuilder.Entity("MMS.Entities.DbSet.MessHaveMember", b =>
                 {
                     b.HasOne("MMS.Entities.DbSet.Mess", "Messes")
@@ -550,6 +648,11 @@ namespace MMS.DataService.Migrations
                     b.Navigation("Members");
 
                     b.Navigation("Months");
+                });
+
+            modelBuilder.Entity("MMS.Entities.DbSet.Month", b =>
+                {
+                    b.Navigation("Expenses");
                 });
 
             modelBuilder.Entity("MMS.Entities.DbSet.Person", b =>

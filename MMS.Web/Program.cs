@@ -7,9 +7,11 @@ using MMS.Authentication.Configuration;
 using MMS.Authentication.IService;
 using MMS.Authentication.Service;
 using MMS.DataService.Data;
-using MMS.DataService.IConfiguration;
+using MMS.DataService.IRepository;
 using MMS.DataService.Middleware;
 using MMS.DataService.Paypal;
+using MMS.DataService.Repository;
+using MMS.DataService.Service;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,6 +26,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 });
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IUnitOfService, UnitOfService>();
 
 builder.Services.AddAuthentication(options =>
 {

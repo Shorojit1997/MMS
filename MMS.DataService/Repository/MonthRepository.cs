@@ -18,6 +18,21 @@ namespace MMS.DataService.Repository
 
         }
 
+        public async Task<bool> AddRange(List<Days> days)
+        {
+            return true;
+        }
+
+        public async Task<Month> GetLastMonthByMessId(Guid MessId)
+        {
+            var months=await dbset.Where(e=>e.MessId==MessId).OrderByDescending(e=>e.CreatedAt).ToListAsync();
+            if(months.Any())
+            {
+                return months.First();
+            }
+            return null;
+        }
+
         public async Task<IEnumerable<Month>> GetMonthsByMessId(Guid MessId)
         {
            return await dbset.Where(e=> e.MessId==MessId).ToListAsync();

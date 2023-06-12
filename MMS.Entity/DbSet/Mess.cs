@@ -10,7 +10,7 @@ namespace MMS.Entities.DbSet
     {
         public string Name { get; set; }
 
-        public string StartDate { get; set; }
+        public DateTime StartDate { get; set; }
 
         public List<MessHaveMember> Members { get; set; } = new List<MessHaveMember>();
         public List<Month> Months { get; set; } = new List<Month>();

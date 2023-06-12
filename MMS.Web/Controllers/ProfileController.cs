@@ -6,51 +6,44 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using MMS.Authentication.Configuration;
 using MMS.Authentication.Models.DTO.Incomming;
-using MMS.DataService.IConfiguration;
 using MMS.Entities.DbSet;
 using MMS.Entities.Dtos.Incomming;
 using MMS.Entities.Dtos.Outgoing;
 using System.Security.Claims;
+using MMS.DataService.IRepository;
+using MMS.DataService.Service;
 
 namespace MMS.Web.Controllers
 {
     [Authorize]
     public class ProfileController : BaseController
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+
+        private readonly IUnitOfService _unitOfService;
+       
         public ProfileController(
-            IUnitOfWork unitOfWork,
-            UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signManager,
-            IOptionsMonitor<JwtConfig> optionsMonitor
-            ) : base(unitOfWork)
+            IUnitOfService unitOfService,
+            IUnitOfWork unitOfWork
+            ) : base(unitOfWork, unitOfService)
         {
-            _userManager = userManager;
-            _signInManager = signManager;
+            _unitOfService = unitOfService;
+
         }
 
         public async Task< IActionResult> Details()
         {
-            var Id = HttpContext.User.Identity.Name;
-            var person = await _unitOfWork.Persons.GetById(Guid.Parse(Id));
-
-            
-            if (person == null)
+            try
             {
+                var Id = HttpContext.User.Identity.Name;
+                var person = await _unitOfService.ProfileService.DetailsService(Id);
+                ViewBag.PersonId = person.Id;
+                return View(person);
+            }
+            catch(Exception ex )
+            {
+                TempData["Error"] =ex.Message;
                 return RedirectToAction("Index", "Error");
             }
-
-            var newPerson = new ProfileUpdateResponseDTO()
-            {
-                Id=person.Id,
-                Name = person.Name,
-                Email = person.Email,
-                Phone = person.Phone,
-                PictureUrl = person.PictureUrl,
-            };
-            ViewBag.PersonId = person.Id;
-            return View(newPerson);
         }
 
         [HttpPost]
@@ -60,48 +53,17 @@ namespace MMS.Web.Controllers
             try
             {
                 var Id = HttpContext.User.Identity.Name;
-                var existingPerson = await _unitOfWork.Persons.GetById(Guid.Parse(Id)); ;
-
-                var originalpath = existingPerson.PictureUrl;
-                //Delete previous Image
-                if (ImageFile != null)
-                {
-                    string fullPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", existingPerson.PictureUrl);
-                    if (System.IO.File.Exists(fullPath) && existingPerson.PictureUrl != "/images/default.jpg")
-                    {
-                        System.IO.File.Delete(fullPath);
-                    }
-
-                    //Write new image 
-                    originalpath =  DateTime.Now.Ticks + ImageFile.FileName;
-
-
-                    var filePath = Path.Combine("wwwroot", "images", originalpath);
-                    if (existingPerson.PictureUrl != "/images/Default.jpg")
-                    {
-                        using (var stream = new FileStream(filePath, FileMode.Create))
-                        {
-                            await ImageFile.CopyToAsync(stream);
-
-                        }
-                    }
-                    originalpath = "/images/" + originalpath;
-
-                }
-               
-                existingPerson.PictureUrl = originalpath;
-                existingPerson.Name = person.Name!=""? person.Name:existingPerson.Name;
-                existingPerson.Phone = person.Phone != "" ? person.Phone : existingPerson.Phone;
-                
-                _unitOfWork.Persons.Update(existingPerson);
-                await _unitOfWork.CompleteAsync();
-
-
+                await _unitOfService.ProfileService.UpdateProfileService(person, ImageFile, Id);
                 return RedirectToAction("Details", "Profile");
             }
             catch (FileNotFoundException)
             {
-                TempData["message"] = "Image file not found.";
+                TempData["Error"] = "Image file not found.";
+                return RedirectToAction("Index", "Error");
+            }
+            catch(Exception ex)
+            {
+                TempData["Error"] = ex.Message;
                 return RedirectToAction("Index", "Error");
             }
          
@@ -117,25 +79,28 @@ namespace MMS.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> ChangePassword(ChangePasswordDTO Details)
         {
-            if (!ModelState.IsValid)
+            try
             {
+                if (!ModelState.IsValid)
+                {
+                    return View();
+                }
+                var id = HttpContext.User.Identity.Name;
+                bool isUpdate = await _unitOfService.ProfileService.ChangePasswordService(Details, id);
+                if (isUpdate)
+                {
+                    TempData["Success"] = "Change password successfully";
+                    return RedirectToAction("Details", "Profile");
+
+                }
+                
                 return View();
             }
-            var email = HttpContext.User.Identity.Name;
-            var user = await _userManager.FindByEmailAsync(email);
-            if (user != null)
+            catch(Exception e)
             {
-
-                var isSignin = await _signInManager.PasswordSignInAsync(user, Details.Password, false, false);
-                if (isSignin.Succeeded)
-                {
-                    await _userManager.ChangePasswordAsync(user, Details.CurrentPassword, Details.Password);
-                    TempData["Success"] = "Change password Successfully";
-                    return RedirectToAction("Details", "Profile");
-                }
-
+                TempData["Error"] = e.Message;
+                return RedirectToAction("Index", "Error");
             }
-            return View();
         }
 
 

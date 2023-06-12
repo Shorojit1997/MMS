@@ -1,0 +1,234 @@
+﻿@Html.Partial("./Partials/_Headers")
+
+<!-- Main Content -->
+<div class="row mt-4">
+    <div class="col-9">
+        <!-- Sidebar -->
+        <div class="row bg-light">
+            <div class="col-6">
+                <h4>Current Month Meal Status!</h4>
+            </div>
+            <div class="col-6 d-flex justify-content-between">
+            </div>
+        </div>
+
+
+        <div class="d-flex justify-content-center">
+            <div class="align-items-center" style="width: 400px">
+                <div class="card m-2 border-1 bg-light">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-8">
+                                <h5><i><b>Current Meal Timeline</b></i></h5>
+                            </div>
+                            <div class="col-4">
+                                <p style="font-size: 10px;" class="bg-success text-white m-0 p-2"><b>Running</b></p>
+                                <p style="font-size: 10px;" class="bg-info m-0 p-2"><b>Stop</b></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div id="myModal">
+                        </div>
+                        <div class="row">
+                            <div class="m-1 col-2"></div>
+                            <div class="m-1 col-2"></div>
+                            @foreach (var item in ViewBag.Days)
+                            {
+                                @if (item.Dinner +item.Breakfast+item.Lunch > 0)
+                                {
+                                    if (item.IsEnd == true)
+                                    {
+                                        <div class="btn btn-success m-1 col-2  ">
+                                            <button type="button"
+                                                disabled
+                                                    class="col-8 btn btn-sm m-0 p-0 border-0 text-white bg-transparent">
+                                                @item.Number
+                                            </button>
+                                            <button type="button" class="col-2 text-white m-0 p-0 border-0 fa-solid fa-sort-down bg-transparent" style="font-size:18px;" ></button>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="btn btn-success m-1 col-2">
+                                            <button type="button"
+                                                    id="btn1@(item.Id)"
+                                                    onclick="changeStatus('@item.Id', this)"
+                                                    class="col-8 btn btn-sm m-0 p-0 border-0 text-white bg-transparent">
+                                                @item.Number
+                                            </button>
+                                            <button id="btn@(item.Id)" type="button" class="col-2 text-white m-0 p-0 border-0 fa-solid fa-sort-down bg-transparent" style="font-size:18px;" onclick="forModal('@item.Id','@item.Breakfast','@item.Lunch','@item.Dinner', this)();"></button>
+                                        </div>
+                                    }
+                                }
+                                else
+                                {
+                                    if (item.IsEnd == true)
+                                    {
+                                        <div class="btn btn-sm btn-info m-1 col-2">
+                                            <button type="button"
+                                                    disabled
+                                                    class="col-8 btn btn-sm m-0 p-0 border-0 text-dark bg-transparent">
+                                                @item.Number
+                                            </button>
+                                            <button type="button" disabled class="col-2 text-dark  m-0 p-0 border-0 fa-solid fa-sort-down bg-transparent" style="font-size:18px;cursor:pointer;"></button>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="btn btn-sm btn-info m-1 col-2">
+                                            <button type="button"
+                                                    id="btn1@(item.Id)"
+                                                    onclick="changeStatus('@item.Id', this)"
+                                                    class="col-8 btn btn-sm m-0 p-0 border-0 text-dark bg-transparent">
+                                                @item.Number
+                                            </button>
+                                            <button id="btn@(item.Id)" type="button" type="button" class="col-2 text-dark m-0 p-0 border-0 fa-solid fa-sort-down bg-transparent" style="font-size:18px;" onclick="forModal('@item.Id','@item.Breakfast','@item.Lunch','@item.Dinner', this)();"></button>
+                                        </div>
+                                    }
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-3">
+        @Html.Partial("../Expense/Partials/_Sidebar")
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+
+        function changeStatus(DayId, currentButton) {
+            $.post('/Meal/ChangeStatus', { DaysId: DayId }, function (res) {
+                if (res.days.dinner + res.days.lunch + res.days.breakfast > 0) {
+                    $(currentButton).parent().removeClass('btn-info').addClass('btn-success');
+                   
+                } else {
+                    $(currentButton).parent().removeClass('btn-success').addClass('btn-info');
+                }
+
+                var item = res.days;
+                var forModalFunction = "forModal('" + DayId + "', '" + item.breakfast + "', '" + item.lunch + "','" + item.dinner + "', this);";
+                var dayIds = "#btn" + DayId;
+                var secondButton = $(dayIds);
+                secondButton.attr("onclick", forModalFunction);
+
+            }).fail(function (xhr, status, error) {
+                // Handle error
+            });
+        }
+
+
+
+
+        function forModal(DayId, breakFast, lunch, dinner, currentButton) {
+
+            var modals = `
+            <div class="modal" id="myModal1">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-6" style="font-size: 24px; font-weight: bold;">
+                                    Breakfast:
+                                </div>
+                                <div class="col-2">
+                                    <button onclick="UpdateMealStatus('${DayId}','1','0','0')" class="btn btn-sm btn-success m-1" style="font-size: 20px; font-weight: bold;">+</button>
+                                </div>
+                                <div id="breakfast112" class="col-2" style="font-size: 20px; font-weight: bold;">
+                                    ${breakFast}
+                                </div>
+                                <div class="col-2">
+                                     <button onclick="UpdateMealStatus('${DayId}','-1','0','0')" class="btn btn-sm btn-info m-1" style="font-size: 20px; font-weight: bold;">-</button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6" style="font-size: 24px; font-weight: bold;">
+                                    Lunch:
+                                </div>
+                                <div class="col-2">
+                                    <button onclick="UpdateMealStatus('${DayId}','0','1','0')" class="btn btn-sm btn-success m-1" style="font-size: 20px; font-weight: bold;">+</button>
+                                </div>
+                                   <div id="lunch112" class="col-2" style="font-size: 20px; font-weight: bold;">
+                                    ${lunch}
+                                </div>
+                                <div class="col-2">
+                                    <button onclick="UpdateMealStatus('${DayId}','0','-1','0')" class="btn btn-sm btn-info m-1" style="font-size: 20px; font-weight: bold;">-</button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6" style="font-size: 24px; font-weight: bold;">
+                                    Dinner:
+                                </div>
+                                <div class="col-2">
+                                        <button onclick="UpdateMealStatus('${DayId}','0','0','1')" class="btn btn-sm btn-success m-1" style="font-size: 20px; font-weight: bold;">+</button>
+                                </div>
+                                    <div id="dinner112" class="col-2" style="font-size: 20px; font-weight: bold;">
+                                    ${dinner}
+                                </div>
+                                <div class="col-2">
+                                            <button  <button onclick="UpdateMealStatus('${DayId}','0','0','-1')" class="btn btn-sm btn-info m-1" style="font-size: 20px; font-weight: bold;">-</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+
+            var mod = $("#myModal");
+            mod.empty(); // Remove all child elements
+
+            mod.append(modals);
+
+            // Trigger the modal's show method to open it automatically
+            $("#myModal1").modal("show");
+        }
+
+
+
+
+        function UpdateMealStatus(DayId, breakFast=0, lunch=0, dinner=0,) {
+            $.post('/Meal/UpdateMealStatus',
+            {   DayId: DayId, 
+                Breakfast: breakFast, 
+                Lunch: lunch, 
+                Dinner: dinner }, 
+                
+                
+            function (res) {
+                    var days = res.days;
+                    var breakfast = $("#breakfast112")[0];
+                    var lunch = $("#lunch112")[0];
+                    var dinner = $("#dinner112")[0];
+
+                    breakfast.innerText = days.breakfast;
+                    lunch.innerText = days.lunch;
+                    dinner.innerText = days.dinner;
+                    
+                    var dayIds = "#btn" + DayId;
+                    if(days.breakfast+days.lunch+days.dinner>0){
+                        $(dayIds).parent().removeClass('btn-info').addClass('btn-success');
+                    }
+                    else{
+                        $(dayIds).parent().removeClass('btn-success').addClass('btn-info');
+                    }
+            }).fail(function (xhr, status, error) {
+                // Handle error
+            });
+        }
+
+
+    </script>
+}

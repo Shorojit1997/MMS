@@ -1,0 +1,12 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+  ,
+{
+  "provider": "cdnjs",
+  "library": "fontawesome-iconpicker@3.2.0",
+  "destination": "wwwroot/lib/fontawesome-iconpicker/fontawesome-iconpicker/"
+}
+]
+}
