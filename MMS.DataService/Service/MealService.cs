@@ -61,9 +61,28 @@ namespace MMS.DataService.Service
             return true;
         }
 
+        public async Task<Days> UpdateMealStatus(string DayId, int BreakFast=0, int Lunch = 0 , int Dinner= 0)
+        {
+            var day = await _unitOfWork.Days.GetById(Guid.Parse(DayId));
+            if(day is null)
+            {
+                throw new Exception("Invalid Route");
+            }
 
+            day.Breakfast = BreakFast != 0 ? day.Breakfast + BreakFast : day.Breakfast;
+            day.Lunch = Lunch != 0 ? day.Lunch + Lunch : day.Lunch;
+            day.Dinner = Dinner != 0 ? day.Dinner + Dinner : day.Dinner;
 
+            day.Breakfast= day.Breakfast<0? 0 : day.Breakfast;
+            day.Lunch = day.Lunch < 0 ? 0 : day.Lunch;
+            day.Dinner = day.Dinner < 0 ? 0 : day.Dinner;
+            day.UpdatedAt = DateTime.Now;
 
+            _unitOfWork.Days.Update(day);
+            await _unitOfWork.CompleteAsync();
 
+            return day;
+
+        }
     }
 }

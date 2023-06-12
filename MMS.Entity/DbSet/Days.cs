@@ -16,5 +16,7 @@ namespace MMS.Entities.DbSet
         public int Lunch { get; set; }= 0;
         public int Dinner { get; set; } = 0;
         public bool IsEnd { get; set; } = false;
+
+        public bool IsStart { get; set; }= false;
     }
 }

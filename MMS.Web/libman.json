@@ -2,9 +2,11 @@
   "version": "1.0",
   "defaultProvider": "cdnjs",
   "libraries": [
-    {
-      "library": "bootstrap-icons@1.10.5",
-      "destination": "wwwroot/lib/bootstrap-icons/"
-    }
-  ]
+  ,
+{
+  "provider": "cdnjs",
+  "library": "fontawesome-iconpicker@3.2.0",
+  "destination": "wwwroot/lib/fontawesome-iconpicker/fontawesome-iconpicker/"
+}
+]
 }

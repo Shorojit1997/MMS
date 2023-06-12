@@ -99,5 +99,40 @@ namespace MMS.Web.Controllers
                 return RedirectToAction("Index", "Error");
             }
         }
+
+
+
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateMealStatus(string DayId,int BreakFast = 0,int Lunch = 0, int Dinner = 0)
+        {
+            try
+            {
+                if (DayId == null)
+                {
+                    throw new Exception("Invalid Route");
+                }
+                var id = HttpContext.User.Identity.Name;
+                var day=await _unitOfService.MealService.UpdateMealStatus( DayId, BreakFast,  Lunch, Dinner);
+                return Ok(new DayResponseDTO()
+                {
+                    Success = true,
+                    Days = day
+                });
+
+
+            }
+            catch (Exception ex)
+            {
+                TempData["error"] = ex.Message;
+                return BadRequest(new DayResponseDTO()
+                {
+                    Success = false,
+                    Message = ex.Message
+                });
+            }
+        }
+
+
     }
 }

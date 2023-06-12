@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     function changeStatus(DayId) {
-        console.log("Sagor");
+       
         $.post('/Meal/ChangeStatus', { DaysId: DayId }, function (response) {
             if (response.Success) {
 
