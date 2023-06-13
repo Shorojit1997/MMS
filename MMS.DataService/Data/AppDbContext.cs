@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using MMS.Entities.DbSet;
+using System.Reflection.Emit;
 
 
 namespace MMS.DataService.Data
@@ -12,7 +13,30 @@ namespace MMS.DataService.Data
         {
 
         }
-    
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            
+            builder.Entity<Month>()
+              .HasMany(m => m.Expenses)
+              .WithOne(e => e.Month)
+              .HasForeignKey(e => e.MonthId)
+              .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<Mess>()
+              .HasMany(m => m.Months)
+              .WithOne(month => month.Mess)
+              .HasForeignKey(month => month.MessId)
+              .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<Mess>()
+                .HasMany(m => m.Deposits)
+                .WithOne(deposit => deposit.Mess)
+                .HasForeignKey(deposit => deposit.MessId)
+                .OnDelete(DeleteBehavior.Cascade);
+            base.OnModelCreating(builder);
+        }
+
         public  DbSet<Person> Persons { get; set; }
         public  DbSet<Mess> Messes { get; set; }
         public DbSet<Month> Months { get; set; }

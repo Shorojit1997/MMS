@@ -1,6 +1,8 @@
 ﻿@Html.Partial("../Expense/Partials/_Headers")
 
-
+@{
+    ViewData["Title"] = "All members current status";
+}
 <div class="row mt-4">
     <div id="forpdfdownload" class="col-10">
         <!-- Sidebar -->
@@ -70,7 +72,7 @@
                                     {
                                         @if(day.IsEnd==true){
                                             <td class="bg-dark">
-                                                @if (day.Dinner > 0)
+                                                @if (day.Dinner +day.Breakfast+day.Lunch > 0)
                                                 {
 
                                                     <p data-bs-toggle="tooltip" title="@day.Breakfast  @day.Lunch  @day.Dinner" style="font-size: 10px;" class="bg-success text-white m-0 p-1 text-center"><b>On</b></p>
@@ -84,7 +86,7 @@
                                         else
                                         {
                                             <td>
-                                                @if (day.Dinner > 0)
+                                                @if (day.Dinner + day.Breakfast + day.Lunch > 0)
                                                 {
                                                     <p data-bs-toggle="tooltip" title="@day.Breakfast  @day.Lunch  @day.Dinner" style="font-size: 10px;" class="bg-success text-white m-0 p-1 text-center"><b>On</b></p>
                                                 }
@@ -127,7 +129,7 @@
         <div class="row">
             <div class="col-8"></div>
             <div class="col-2">
-                <a href="@Url.Action("GeneratePdfReport","Meal",new{MonthId=ViewBag.MonthId, MessId=ViewBag.MessId})" target="_blank" class="btn btn-sm btn-light">Generate Report</a>
+                <a href="@Url.Action("GeneratePdfReport","Meal",new{MonthId=ViewBag.MonthId, MessId=ViewBag.MessId})" target="_blank" class="btn btn-sm btn-link">Generate Report</a>
             </div>
         </div>
 
